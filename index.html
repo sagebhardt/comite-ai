@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal Comité AI — Yánekens S.A.</title>
+<style>
+  :root {
+    --accent: #3300FF;
+    --accent-light: #E8E0FF;
+    --accent-dark: #2200CC;
+    --green: #2E7D32;
+    --green-light: #E8F5E9;
+    --orange: #FF6600;
+    --orange-light: #FFF3E0;
+    --red: #C62828;
+    --red-light: #FFEBEE;
+    --gray-50: #FAFAFA;
+    --gray-100: #F5F5F5;
+    --gray-200: #EEEEEE;
+    --gray-400: #BDBDBD;
+    --gray-600: #757575;
+    --gray-800: #424242;
+    --radius: 12px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Helvetica Neue', Helvetica, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    background: var(--gray-50);
+    color: var(--gray-800);
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    color: white;
+    padding: 48px 24px 36px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3300FF, #FF6600, #3300FF);
+  }
+  .header h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.5px; }
+  .header p { font-size: 1.05rem; opacity: 0.85; max-width: 600px; margin: 0 auto; }
+
+  /* NAV */
+  .nav {
+    background: white;
+    border-bottom: 1px solid var(--gray-200);
+    padding: 0 24px;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .nav a {
+    padding: 14px 20px;
+    text-decoration: none;
+    color: var(--gray-600);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+  }
+  .nav a:hover, .nav a.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* CONTAINER */
+  .container { max-width: 960px; margin: 0 auto; padding: 32px 24px; }
+
+  /* SECTION */
+  .section { margin-bottom: 48px; }
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent-light);
+  }
+
+  /* CTA BUTTON */
+  .cta-area { text-align: center; margin: 32px 0; }
+  .cta-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--green) 0%, #388E3C 100%);
+    color: white;
+    padding: 16px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(46,125,50,0.3);
+    transition: all 0.3s;
+  }
+  .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(46,125,50,0.4); }
+  .cta-sub { display: block; font-size: 0.85rem; opacity: 0.9; margin-top: 4px; font-weight: 400; }
+
+  /* CARDS */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--gray-200);
+    transition: all 0.2s;
+  }
+  .card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+  .card-icon { font-size: 2rem; margin-bottom: 12px; }
+  .card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 8px; color: var(--gray-800); }
+  .card p { font-size: 0.9rem; color: var(--gray-600); margin-bottom: 12px; }
+  .card-link {
+    display: inline-block; font-size: 0.85rem; font-weight: 600;
+    color: var(--accent); text-decoration: none;
+  }
+  .card-link:hover { text-decoration: underline; }
+
+  /* STEPS WALKTHROUGH */
+  .steps { counter-reset: step; }
+  .step {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 24px;
+    padding: 20px;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--gray-200);
+    position: relative;
+    transition: all 0.2s;
+  }
+  .step:hover { box-shadow: var(--shadow-lg); }
+  .step-number {
+    flex-shrink: 0;
+    width: 48px; height: 48px;
+    background: var(--accent);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+  .step-content { flex: 1; }
+  .step-content h3 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+  .step-content p { font-size: 0.9rem; color: var(--gray-600); }
+  .step-time {
+    display: inline-block;
+    background: var(--accent-light);
+    color: var(--accent);
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-top: 6px;
+  }
+
+  /* TIER TABLE */
+  .tier-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .tier-table th { background: var(--accent); color: white; padding: 12px 16px; text-align: left; font-size: 0.85rem; font-weight: 600; }
+  .tier-table td { padding: 12px 16px; border-bottom: 1px solid var(--gray-200); font-size: 0.9rem; }
+  .tier-table tr:last-child td { border-bottom: none; }
+  .tier-table tr:hover td { background: var(--gray-100); }
+
+  .badge {
+    display: inline-block; padding: 3px 10px; border-radius: 20px;
+    font-size: 0.75rem; font-weight: 600;
+  }
+  .badge-green { background: var(--green-light); color: var(--green); }
+  .badge-orange { background: var(--orange-light); color: var(--orange); }
+  .badge-red { background: var(--red-light); color: var(--red); }
+
+  /* AGENDA */
+  .agenda-item {
+    display: flex; align-items: center; gap: 16px;
+    padding: 12px 16px; border-bottom: 1px solid var(--gray-200);
+  }
+  .agenda-item:last-child { border-bottom: none; }
+  .agenda-time { font-weight: 700; color: var(--accent); min-width: 60px; font-size: 0.9rem; }
+  .agenda-desc { flex: 1; font-size: 0.9rem; }
+  .agenda-owner { color: var(--gray-600); font-size: 0.8rem; min-width: 120px; text-align: right; }
+
+  /* FAQ */
+  .faq-item { margin-bottom: 16px; }
+  .faq-q {
+    background: white; padding: 16px 20px; border-radius: var(--radius);
+    cursor: pointer; font-weight: 600; font-size: 0.95rem;
+    border: 1px solid var(--gray-200); display: flex;
+    justify-content: space-between; align-items: center;
+    transition: all 0.2s;
+  }
+  .faq-q:hover { background: var(--gray-100); }
+  .faq-q .arrow { transition: transform 0.3s; font-size: 0.8rem; color: var(--gray-400); }
+  .faq-q.open .arrow { transform: rotate(180deg); }
+  .faq-a {
+    max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+    padding: 0 20px; font-size: 0.9rem; color: var(--gray-600);
+  }
+  .faq-a.open { max-height: 300px; padding: 12px 20px 16px; }
+
+  /* ALERT BOX */
+  .alert {
+    padding: 16px 20px;
+    border-radius: var(--radius);
+    margin: 20px 0;
+    font-size: 0.9rem;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .alert-info { background: var(--accent-light); border-left: 4px solid var(--accent); }
+  .alert-success { background: var(--green-light); border-left: 4px solid var(--green); }
+  .alert-warn { background: var(--orange-light); border-left: 4px solid var(--orange); }
+  .alert-icon { font-size: 1.2rem; flex-shrink: 0; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center; padding: 32px 24px; color: var(--gray-600);
+    font-size: 0.85rem; border-top: 1px solid var(--gray-200);
+    margin-top: 48px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .header h1 { font-size: 1.6rem; }
+    .nav { overflow-x: auto; justify-content: flex-start; }
+    .nav a { white-space: nowrap; padding: 12px 14px; font-size: 0.8rem; }
+    .step { flex-direction: column; gap: 12px; }
+    .tier-table { font-size: 0.8rem; }
+    .tier-table th, .tier-table td { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div style="font-size: 0.85rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; opacity: 0.8; margin-bottom: 10px;">YÁNEKEN</div>
+  <h1>Portal Comité AI</h1>
+  <p>Tu punto de entrada para postular, seguir y entender los proyectos de IA en la organización</p>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <a href="#submit" class="active">Postular Proyecto</a>
+  <a href="#walkthrough">Paso a Paso</a>
+  <a href="#tiers">Niveles</a>
+  <a href="#agenda">Reunión</a>
+  <a href="#docs">Documentos</a>
+  <a href="#architecture">Arquitectura</a>
+  <a href="#ip-policy">PI</a>
+  <a href="#faq">FAQ</a>
+</div>
+
+<div class="container">
+
+  <!-- CTA: SUBMIT PROJECT -->
+  <div class="section" id="submit">
+    <div class="cta-area">
+      <a id="cta-form-link" href="#" class="cta-btn" target="_blank" onclick="return handleCtaClick()">
+        Postular un Nuevo Proyecto
+        <span class="cta-sub">Toma ~10 minutos completar el formulario</span>
+      </a>
+    </div>
+
+    <!-- QR Code (static pre-generated image) -->
+    <div id="qr-section" style="text-align: center; margin: 24px 0;">
+      <p style="font-size: 0.9rem; color: var(--gray-600); margin-bottom: 12px;">O escanea el QR desde tu celular:</p>
+      <img id="qr-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAFKUlEQVR4nO3dQZIbNxBEUY3DR/L9TzB3Gm/blH9FKasAcvHfUppGN0cZIASgC18/Pz+/pP/z17sfQJ/LcAgZDiHDIWQ4hAyHkOEQMhxCfxd/98/XwRt/P+beght9/3fq7tnCN8/qFTdqXpX9GN23aK1z+YriGew5hAyHkOEQqsYcT81vx0L2fU8tvLT2CY83/7Hm4Oboh32y5xAyHEKGQ8hwCHUHpC+aI5pg6NQcaWaTYJ2Wa/PZtqKF+a+LZB/WnkPIcAgZDqFwzHFOc8mqcG1+bH6j+czbUfYcQoZDyHAIfdyYo6n/fd8cMRSCfUm7m33exZ5DyHAIGQ4hwyEUDkjPjaSKkWa26NUcTgbLdS+tBYt/L64tHzbZcwgZDiHDIdQdcxx96ar5rljxfR989fa3CwWbwrNxT9PRf4snew4hwyFkOIQMh1A1IH3LmmE20rw2Rmuab44vWrvGnkPIcAgZDqGw7FOwmlUMJuZzRM31sOLPz233+v0n//RGR/fTW/ZJCcMhZDiEvprnrTS/9ua1HAvZnMfuox5t4dx9sxvZcwgZDiHDIWQ4hBZeh5xXQirMh5PNVxGD+ah5C83G+/N180/xZM8hZDiEDIdQdxLsxbymwFuqEszXCNcb79xoXi3CUpNaZjiEDIfQ8maf/v/Iz62HFQ1mu4qCFtaPoBveKPut2nMIGQ4hwyFkOISWDwDMjq3bnRcqDjG5dsJeYXfE3VzGy25kzyFkOIQMh9By2adsiajZIL0k13+GeWWma2WfsmWz5hDNzT6aMhxChkPIcAgtlH2aFyyYL94WY1VaNM7qkBZ2C4zOF2/nn8ieQ8hwCBkOoWr3eTCbtH4Mylwwarl2FvD6bvj5XrInew4hwyFkOIQWNvvMN2Q3bzSfpWgu3b1LcyR3bcuSPYeQ4RAyHEKGQ6i78HZ0c1Rh9wDAbC1qPk4czvL1P+z89/BkzyFkOIQMh1C3BMP6G2/BFqHs+/7cecTZuCdYNsuKaTkJpoMMh5DhEDIcQuFhPOTamXhFa+vH5ZH5BrbdubKicWuCaZnhEDIcQgu1z69VDS8u2S2Y1HyGosH5jF/zRhnLPmnKcAgZDqHwjDf60pq/jHV093lxo/lu78K51/vmRdad51DCcAgZDiHDIbR86HBhfpTObuNHp9HWN8fPnyFgzyFkOIQMh1A45ggOmpuXfbq2o6f5qLv76X9vsNPy0ZMG7TmEDIeQ4RAyHEJhHdLA7tBpXvD05qrs7kHR1HKfO8E0ZTiEDIfQ8k6wQnZqye68ULOFbNQyN7+RBwDqEsMhZDiEwtrnuxWhrr0rll0yf71vuPu8f0mw1b5gzyFkOIQMh5DhEFrYff509Ci/p6wO6e7xwetn5Jz77WUb5+w5hAyHkOEQCss+7br2ztzuRNx6+YP5G2+7O4nsOYQMh5DhEOqet7KOzv9t7sFZf9OruaL2/Kv5elh2+dGVzid7DiHDIWQ4hAyHULgTLLB+kErQQiEYCM/Hieuzf7uPas8hZDiEDIdQ9y37oyWOjt6IfqywW6b9pt2alvYcQoZDyHAIGQ6h5d3n1/S3dwclGNbPLQyKVxWXz0edToJpynAIGQ6hjxhz7BaRmu+Aal7Vn68bfsD1GzkJpinDIWQ4hO6Vmiyc+7b+xWtyuzctbpQ1uFtEKlsItOcQMhxChkPIcAh1B6Tv2trUfIZibqpzSfYM6ye2zKu7egCgLjEcQoZD6CPKPukz2XMIGQ4hwyFkOIQMh5DhEDIcQoZD6F+KeqsdwdmqegAAAABJRU5ErkJggg==" alt="QR Code — Formulario Comité AI" style="width: 180px; height: 180px; border-radius: 8px; box-shadow: var(--shadow); image-rendering: pixelated;">
+    </div>
+
+    <div class="alert alert-info">
+      <span class="alert-icon">📌</span>
+      <div><strong>Deadline:</strong> envía tu solicitud antes del lunes al final del día para ser incluido en la agenda del miércoles. Los proyectos Nivel 1 (bajo riesgo) pueden recibir aprobación asíncrona en 24-48 horas.</div>
+    </div>
+  </div>
+
+  <!-- WALKTHROUGH -->
+  <div class="section" id="walkthrough">
+    <h2 class="section-title">Cómo Postular un Proyecto — Paso a Paso</h2>
+
+    <div class="alert alert-success">
+      <span class="alert-icon">💡</span>
+      <div><strong>Consejo:</strong> No necesitas aprobación para usar Claude para tareas personales (emails, resúmenes, etc.). Solo necesitas aprobación para proyectos que serán usados por otros o que involucren datos de la empresa.</div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>Verifica que no exista algo similar</h3>
+          <p>Revisa la lista de proyectos activos más abajo o en el Project Tracker. Si ya existe algo parecido, contacta al dueño del proyecto para ver si puedes extenderlo en vez de crear uno nuevo.</p>
+          <span class="step-time">2 min</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>Completa el formulario de ingreso</h3>
+          <p>Haz clic en el botón verde de arriba y completa todas las secciones. Necesitarás: descripción del proyecto, objetivo de negocio, datos involucrados, costo estimado en CLP, y nivel de riesgo. <strong>Revisa la <a href="#" class="brief-link" style="color: var(--accent);">Guía de Project Brief</a></strong> para ver ejemplos de buenas vs. malas postulaciones.</p>
+          <span class="step-time">~10 min</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>Envía antes del lunes EOD</h3>
+          <p>El formulario se envía con un clic. Las respuestas llegan automáticamente al comité. Para ser incluido en la agenda del miércoles, envía antes del lunes al final del día.</p>
+          <span class="step-time">1 min</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h3>Prepara una mini-presentación (opcional)</h3>
+          <p>Si tu proyecto es Nivel 2 o 3, prepara 5 minutos para presentar: el problema, tu solución, los datos que usa, costo estimado, y riesgos principales. Para Nivel 1, no es necesario.</p>
+          <span class="step-time">15-30 min</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">5</div>
+        <div class="step-content">
+          <h3>Asiste a la reunión del miércoles</h3>
+          <p>Preséntate en "[obligatorio] Comité AI" para responder preguntas del comité sobre tu proyecto. Si es Nivel 1, podrías recibir aprobación asíncrona sin necesidad de asistir.</p>
+          <span class="step-time">5 min en la reunión</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">6</div>
+        <div class="step-content">
+          <h3>Recibe la decisión</h3>
+          <p>Dentro de las 24 horas después de la reunión recibirás la decisión: Aprobado, Aprobado con Condiciones, Diferido, o Rechazado. Si es rechazado, recibirás retroalimentación para volver a postular.</p>
+          <span class="step-time">Sin acción requerida</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIERS -->
+  <div class="section" id="tiers">
+    <h2 class="section-title">Niveles de Aprobación</h2>
+    <p style="margin-bottom: 16px; color: var(--gray-600);">El nivel depende del riesgo, costo y exposición de tu proyecto. Si no estás seguro, el comité te ayuda a clasificarlo.</p>
+
+    <table class="tier-table">
+      <thead>
+        <tr>
+          <th>Nivel</th>
+          <th>Criterio</th>
+          <th>Aprobación</th>
+          <th>Plazo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge badge-green">Nivel 1 — Bajo</span></td>
+          <td>Solo interno, sin datos sensibles, <strong>&lt;$500.000 CLP/mes</strong>, sin impacto a clientes</td>
+          <td>Presidente (async)</td>
+          <td>24-48 horas</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-orange">Nivel 2 — Medio</span></td>
+          <td>Datos sensibles, <strong>$500.000–$5.000.000 CLP/mes</strong>, o toca flujos de clientes</td>
+          <td>Votación del comité</td>
+          <td>Próximo miércoles</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-red">Nivel 3 — Alto</span></td>
+          <td>Externo, regulatorio, <strong>&gt;$5.000.000 CLP/mes</strong>, o impacto organizacional</td>
+          <td>Comité + liderazgo</td>
+          <td>1–2 semanas</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="alert alert-warn">
+      <span class="alert-icon">⚡</span>
+      <div><strong>Fast track:</strong> Si tu proyecto es claramente Nivel 1, puedes solicitar aprobación express por email a <a href="mailto:sgr@ynk.cl">sgr@ynk.cl</a> con asunto "[Comité AI] Express — [Nombre del Proyecto]". No necesitas esperar al miércoles.</div>
+    </div>
+  </div>
+
+  <!-- AGENDA -->
+  <div class="section" id="agenda">
+    <h2 class="section-title">Reunión Semanal — Miércoles</h2>
+    <p style="margin-bottom: 16px; color: var(--gray-600);">"[obligatorio] Comité AI" — 60 minutos cada miércoles</p>
+
+    <div style="background: white; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--gray-200); overflow: hidden;">
+      <div class="agenda-item">
+        <span class="agenda-time">5 min</span>
+        <span class="agenda-desc"><strong>Apertura:</strong> revisión de action items pendientes</span>
+        <span class="agenda-owner">Presidente</span>
+      </div>
+      <div class="agenda-item">
+        <span class="agenda-time">10 min</span>
+        <span class="agenda-desc"><strong>Proyectos activos:</strong> avances, bloqueos, hitos</span>
+        <span class="agenda-owner">Dueños de proyectos</span>
+      </div>
+      <div class="agenda-item" style="background: var(--green-light);">
+        <span class="agenda-time">20 min</span>
+        <span class="agenda-desc"><strong>Nuevos proyectos:</strong> presentación y decisión <em>(aquí se revisa tu proyecto)</em></span>
+        <span class="agenda-owner">Presentadores</span>
+      </div>
+      <div class="agenda-item">
+        <span class="agenda-time">10 min</span>
+        <span class="agenda-desc"><strong>Seguridad:</strong> temas flaggeados, auditorías</span>
+        <span class="agenda-owner">Líder de Seguridad</span>
+      </div>
+      <div class="agenda-item">
+        <span class="agenda-time">10 min</span>
+        <span class="agenda-desc"><strong>Costos:</strong> presupuesto vs. real, tendencias</span>
+        <span class="agenda-owner">Líder de Finanzas</span>
+      </div>
+      <div class="agenda-item">
+        <span class="agenda-time">5 min</span>
+        <span class="agenda-desc"><strong>Cierre:</strong> resumen de decisiones, nuevos action items</span>
+        <span class="agenda-owner">Presidente</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOCUMENTS -->
+  <div class="section" id="docs">
+    <h2 class="section-title">Documentos y Herramientas</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">📝</div>
+        <h3>Google Form de Ingreso</h3>
+        <p>La forma más rápida de postular un proyecto. ~10 minutos.</p>
+        <a href="#" class="card-link form-link" target="_blank">Abrir formulario →</a>
+      </div>
+      <div class="card">
+        <div class="card-icon">📊</div>
+        <h3>AI Project Tracker</h3>
+        <p>Todos los proyectos activos, costos, estados. La fuente de verdad.</p>
+        <a href="#PEGA_AQUI_LINK_AL_TRACKER" class="card-link" target="_blank">Abrir tracker →</a>
+      </div>
+      <div class="card">
+        <div class="card-icon">✅</div>
+        <h3>Checklist de Evaluación</h3>
+        <p>30 criterios que usa el comité para evaluar proyectos.</p>
+        <a href="#PEGA_AQUI_LINK_AL_CHECKLIST" class="card-link" target="_blank">Ver checklist →</a>
+      </div>
+      <div class="card">
+        <div class="card-icon">📖</div>
+        <h3>Manual de Operaciones</h3>
+        <p>Guía completa en español sobre cómo funciona el comité.</p>
+        <a href="#PEGA_AQUI_LINK_AL_MANUAL" class="card-link" target="_blank">Leer manual →</a>
+      </div>
+      <div class="card">
+        <div class="card-icon">📜</div>
+        <h3>Charter del Comité</h3>
+        <p>Misión, alcance, roles, políticas y autoridad del comité.</p>
+        <a href="#PEGA_AQUI_LINK_AL_CHARTER" class="card-link" target="_blank">Ver charter →</a>
+      </div>
+      <div class="card">
+        <div class="card-icon">📋</div>
+        <h3>Agenda Semanal</h3>
+        <p>Plantilla de la agenda para cada reunión del miércoles.</p>
+        <a href="#PEGA_AQUI_LINK_A_LA_AGENDA" class="card-link" target="_blank">Ver plantilla →</a>
+      </div>
+      <div class="card">
+        <div class="card-icon">💡</div>
+        <h3>Guía de Project Brief</h3>
+        <p>Cómo escribir una buena postulación. Ejemplos de bueno vs. malo.</p>
+        <a href="#" class="card-link brief-link" target="_blank">Ver guía →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARCHITECTURE -->
+  <div class="section" id="architecture">
+    <h2 class="section-title">Arquitectura & Tech Stack Recomendado</h2>
+    <p style="margin-bottom: 16px; color: var(--gray-600);">Estas son las recomendaciones por defecto para proyectos de IA. Puedes proponer alternativas con justificación en tu formulario de ingreso.</p>
+
+    <div class="alert alert-info">
+      <span class="alert-icon">🏗️</span>
+      <div><strong>Principio general:</strong> Usamos defaults recomendados, no reglas rígidas. Si tienes una buena razón para usar otra herramienta, justifícalo en el formulario y el comité lo evalúa.</div>
+    </div>
+
+    <!-- LLM Layer -->
+    <div style="background: white; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--gray-200); margin-bottom: 20px; overflow: hidden;">
+      <div style="background: var(--accent); color: white; padding: 14px 20px; font-weight: 700; font-size: 0.95rem;">🧠 Capa de Modelos (LLM)</div>
+      <div style="padding: 20px;">
+        <table class="tier-table" style="box-shadow: none; margin: 0;">
+          <thead>
+            <tr><th>Caso de Uso</th><th>Recomendación</th><th>Notas</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Razonamiento complejo</strong><br><span style="font-size:0.8rem;color:var(--gray-600)">Análisis, decisiones, generación de código, agentes</span></td>
+              <td><span class="badge badge-green">Claude (Anthropic)</span></td>
+              <td>Modelo principal para tareas que requieren precisión, seguimiento de instrucciones complejas, y generación de contenido largo</td>
+            </tr>
+            <tr>
+              <td><strong>Tareas ligeras & alto volumen</strong><br><span style="font-size:0.8rem;color:var(--gray-600)">Clasificación, extracción simple, resúmenes cortos</span></td>
+              <td><span class="badge badge-orange">Gemini (Google)</span></td>
+              <td>Para tareas repetitivas de bajo costo donde la integración con GCP es ventajosa. Usar Gemini Flash para máxima eficiencia</td>
+            </tr>
+            <tr>
+              <td><strong>Embeddings & búsqueda semántica</strong><br><span style="font-size:0.8rem;color:var(--gray-600)">RAG, indexación, similarity search</span></td>
+              <td><span class="badge badge-orange">Vertex AI Embeddings</span></td>
+              <td>Integración nativa con GCP. Alternativa: embeddings de Anthropic si el pipeline ya usa Claude</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Backend Layer -->
+    <div style="background: white; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--gray-200); margin-bottom: 20px; overflow: hidden;">
+      <div style="background: var(--accent); color: white; padding: 14px 20px; font-weight: 700; font-size: 0.95rem;">⚙️ Backend & Desarrollo</div>
+      <div style="padding: 20px;">
+        <table class="tier-table" style="box-shadow: none; margin: 0;">
+          <thead>
+            <tr><th>Componente</th><th>Recomendación</th><th>Notas</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Lenguaje principal</strong></td>
+              <td><span class="badge badge-green">Python 3.11+</span></td>
+              <td>Ecosistema maduro para IA/ML. Usar type hints, virtual envs, y linters</td>
+            </tr>
+            <tr>
+              <td><strong>Framework API</strong></td>
+              <td>FastAPI (recomendado) o Flask</td>
+              <td>FastAPI para proyectos nuevos (async, tipado, docs automáticas). Flask si el equipo ya tiene experiencia</td>
+            </tr>
+            <tr>
+              <td><strong>Orchestración de LLM</strong></td>
+              <td>SDKs nativos (Anthropic SDK, Google AI SDK)</td>
+              <td>Preferir SDKs oficiales sobre frameworks como LangChain. Más control, menos dependencias, más fácil de debuggear</td>
+            </tr>
+            <tr>
+              <td><strong>Manejo de prompts</strong></td>
+              <td>Repositorio centralizado de prompts</td>
+              <td>Usar un repo Git compartido para prompts versionados. No hardcodear prompts en el código</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Infrastructure Layer -->
+    <div style="background: white; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--gray-200); margin-bottom: 20px; overflow: hidden;">
+      <div style="background: var(--accent); color: white; padding: 14px 20px; font-weight: 700; font-size: 0.95rem;">☁️ Infraestructura (GCP)</div>
+      <div style="padding: 20px;">
+        <table class="tier-table" style="box-shadow: none; margin: 0;">
+          <thead>
+            <tr><th>Servicio</th><th>Recomendación</th><th>Cuándo usar</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Compute</strong></td>
+              <td>Cloud Run (default) / GKE (escala)</td>
+              <td>Cloud Run para la mayoría de proyectos. GKE solo si necesitas orquestación compleja o GPUs</td>
+            </tr>
+            <tr>
+              <td><strong>Funciones serverless</strong></td>
+              <td>Cloud Functions</td>
+              <td>Para triggers, webhooks, procesamiento event-driven. Ideal para Nivel 1</td>
+            </tr>
+            <tr>
+              <td><strong>Almacenamiento</strong></td>
+              <td>Cloud Storage (archivos) / BigQuery (analytics)</td>
+              <td>Cloud Storage para documentos y datos no estructurados. BigQuery para análisis y dashboards</td>
+            </tr>
+            <tr>
+              <td><strong>Base de datos</strong></td>
+              <td><span style="color: var(--orange); font-weight: 600;">⏳ Pendiente definición con IT</span></td>
+              <td>El equipo de IT está evaluando opciones. Por ahora: Cloud SQL (PostgreSQL) para proyectos que necesiten DB relacional, Firestore para NoSQL</td>
+            </tr>
+            <tr>
+              <td><strong>Vector DB (RAG)</strong></td>
+              <td>Vertex AI Vector Search / pgvector</td>
+              <td>Vertex AI para escala. pgvector en Cloud SQL para proyectos más simples que ya usen PostgreSQL</td>
+            </tr>
+            <tr>
+              <td><strong>Secrets & Config</strong></td>
+              <td>Secret Manager</td>
+              <td><strong>Obligatorio.</strong> Nunca hardcodear API keys. Usar Secret Manager para todas las credenciales</td>
+            </tr>
+            <tr>
+              <td><strong>Monitoreo</strong></td>
+              <td>Cloud Monitoring + Logging</td>
+              <td>Todo proyecto debe tener logging estructurado y alertas básicas configuradas</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Collaboration Layer -->
+    <div style="background: white; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--gray-200); margin-bottom: 20px; overflow: hidden;">
+      <div style="background: var(--accent); color: white; padding: 14px 20px; font-weight: 700; font-size: 0.95rem;">🤝 Colaboración & Productividad</div>
+      <div style="padding: 20px;">
+        <table class="tier-table" style="box-shadow: none; margin: 0;">
+          <thead>
+            <tr><th>Herramienta</th><th>Uso</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Google Workspace</strong></td><td>Colaboración, documentos, sheets, formularios</td></tr>
+            <tr><td><strong>Claude (Cowork/Desktop)</strong></td><td>Productividad personal, análisis de documentos, generación de contenido</td></tr>
+            <tr><td><strong>Git (GitHub/GitLab)</strong></td><td>Control de versiones para todo el código y prompts</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Anti-patterns -->
+    <div style="background: var(--red-light); border-radius: var(--radius); padding: 20px; margin-top: 20px; border: 1px solid #FFCDD2;">
+      <h3 style="color: var(--red); margin-bottom: 12px; font-size: 1rem;">🚫 Anti-patrones — Lo que NO hacer</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px;">
+        <div style="font-size: 0.9rem;"><strong>No hardcodear API keys</strong> — usar Secret Manager siempre</div>
+        <div style="font-size: 0.9rem;"><strong>No usar datos de producción en experimentos</strong> — sin aprobación explícita</div>
+        <div style="font-size: 0.9rem;"><strong>No crear repos privados sin avisar</strong> — todo proyecto debe estar en el tracker</div>
+        <div style="font-size: 0.9rem;"><strong>No usar LLMs para decisiones críticas sin human-in-the-loop</strong></div>
+        <div style="font-size: 0.9rem;"><strong>No deployar sin logging</strong> — todo servicio debe tener observabilidad básica</div>
+        <div style="font-size: 0.9rem;"><strong>No reinventar la rueda</strong> — revisar el tracker antes de empezar algo nuevo</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IP POLICY -->
+  <div class="section" id="ip-policy">
+    <h2 class="section-title">Propiedad Intelectual</h2>
+
+    <div style="background: white; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--gray-200); padding: 24px; margin-bottom: 20px;">
+      <h3 style="color: var(--accent); margin-bottom: 12px; font-size: 1.05rem;">Titularidad</h3>
+      <p style="font-size: 0.9rem; margin-bottom: 16px;">Todo desarrollo, código fuente, modelo, skill, automatización, prompt, flujo de trabajo, dashboard, algoritmo, base de datos, documentación técnica y cualquier otro producto intelectual creado por empleados, contratistas o colaboradores de <strong>Yánekens S.A.</strong> durante el ejercicio de sus funciones, utilizando recursos, herramientas, plataformas, licencias o tiempo de trabajo provisto por la Empresa, es y será <strong>propiedad exclusiva e irrevocable de Yánekens S.A.</strong></p>
+
+      <h3 style="color: var(--accent); margin-bottom: 12px; font-size: 1.05rem;">¿Qué cubre?</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 8px; margin-bottom: 16px; font-size: 0.9rem;">
+        <div>• Código fuente, scripts, notebooks</div>
+        <div>• Skills, agentes y automatizaciones</div>
+        <div>• Prompts y bibliotecas de prompts</div>
+        <div>• Modelos entrenados con datos de la empresa</div>
+        <div>• Dashboards y herramientas analíticas</div>
+        <div>• Desarrollos derivados de info confidencial</div>
+      </div>
+
+      <h3 style="color: var(--accent); margin-bottom: 12px; font-size: 1.05rem;">Tus obligaciones</h3>
+      <div style="font-size: 0.9rem; margin-bottom: 16px;">
+        <div style="margin-bottom: 4px;">• Registrar todos los desarrollos en el AI Project Tracker</div>
+        <div style="margin-bottom: 4px;">• No usar desarrollos de la empresa en proyectos personales o de terceros</div>
+        <div style="margin-bottom: 4px;">• No compartir código o prompts fuera de la organización sin autorización</div>
+        <div style="margin-bottom: 4px;">• Notificar al comité sobre implicaciones de PI de terceros</div>
+      </div>
+
+      <div class="alert alert-info" style="margin-bottom: 0;">
+        <span class="alert-icon">💡</span>
+        <div><strong>Excepción:</strong> desarrollos fuera del horario laboral, sin recursos de la empresa, y no relacionados con el giro del negocio no están sujetos a esta política. En caso de duda, consultar con SGR antes de iniciar.</div>
+      </div>
+    </div>
+
+    <p style="font-size: 0.85rem; color: var(--gray-600); text-align: center; font-style: italic;">Al postular un proyecto al Comité AI, confirmas haber leído y aceptado esta política. Detalles completos en el Manual de Operaciones.</p>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section" id="faq">
+    <h2 class="section-title">Preguntas Frecuentes</h2>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        ¿Necesito aprobación para usar Claude en mi trabajo diario?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-a">No. El uso personal de asistentes de IA para productividad (redactar emails, resumir documentos, generar ideas) no requiere aprobación. Solo necesitas aprobación cuando vas a construir algo que otros usarán o que involucre datos de la empresa.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Mi proyecto es urgente, ¿puedo saltarme el proceso?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-a">Si tu proyecto es Nivel 1 (bajo riesgo, &lt;$500.000 CLP/mes), puedes solicitar aprobación express por email a sgr@ynk.cl. Para Niveles 2 y 3, debes esperar a la reunión del miércoles salvo una justificación de urgencia aprobada por el Presidente.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        ¿Qué pasa si mi proyecto es rechazado?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-a">Recibirás retroalimentación específica sobre los motivos. Puedes volver a postular una vez que hayas abordado las observaciones del comité. El rechazo no es personal — es una oportunidad para mejorar la propuesta.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        ¿Cómo sé si mi proyecto se superpone con uno existente?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-a">Revisa el AI Project Tracker (link arriba). Si no estás seguro, pregunta al Presidente (sgr@ynk.cl) o al Líder Técnico. El formulario incluye un campo de confirmación donde debes verificar esto.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        ¿Qué pasa si mi proyecto excede el presupuesto?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-a">Si el gasto supera el 120% del presupuesto estimado, se activa una revisión automática. Si supera el 150%, se escala inmediatamente al Líder de Finanzas y al liderazgo. Es mejor actualizar las estimaciones proactivamente.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        ¿Cuánto toma todo el proceso?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-a">Completar el formulario toma ~10 minutos. Nivel 1 puede ser aprobado en 24-48 horas (a veces el mismo día). Nivel 2 se revisa en el próximo miércoles. Nivel 3 puede tomar 1-2 semanas porque requiere sign-off de liderazgo.</div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="section" id="contact">
+    <h2 class="section-title">Contacto</h2>
+    <div class="alert alert-info">
+      <span class="alert-icon">📧</span>
+      <div>
+        <strong>Presidente del Comité:</strong> SGR — <a href="mailto:sgr@ynk.cl">sgr@ynk.cl</a><br>
+        <strong>Asunto para nuevos proyectos:</strong> [Comité AI] Nuevo Proyecto — [Nombre]<br>
+        <strong>Asunto para express (Nivel 1):</strong> [Comité AI] Express — [Nombre]
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- SETUP CONFIG (admin only — visible at bottom) -->
+<div id="setup-panel" style="max-width: 960px; margin: 0 auto; padding: 32px 24px;">
+  <div style="background: white; border-radius: var(--radius); box-shadow: var(--shadow); border: 2px dashed var(--accent); padding: 28px; margin-bottom: 32px;">
+    <h2 style="color: var(--accent); margin-bottom: 4px; font-size: 1.2rem;">Configuración del Portal</h2>
+    <p style="color: var(--gray-600); font-size: 0.85rem; margin-bottom: 20px;">Pega los links de tus documentos aquí. Se guardan en tu navegador y se aplican automáticamente a todo el portal.</p>
+
+    <div style="display: grid; gap: 14px;">
+      <div>
+        <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 4px;">Google Form (link público)</label>
+        <input type="text" id="cfg-form" placeholder="https://docs.google.com/forms/d/e/..." style="width: 100%; padding: 10px 14px; border: 1px solid var(--gray-400); border-radius: 8px; font-size: 0.9rem;">
+      </div>
+      <div>
+        <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 4px;">AI Project Tracker</label>
+        <input type="text" id="cfg-tracker" placeholder="https://docs.google.com/spreadsheets/d/..." style="width: 100%; padding: 10px 14px; border: 1px solid var(--gray-400); border-radius: 8px; font-size: 0.9rem;">
+      </div>
+      <div>
+        <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 4px;">Checklist de Evaluación</label>
+        <input type="text" id="cfg-checklist" placeholder="https://docs.google.com/spreadsheets/d/..." style="width: 100%; padding: 10px 14px; border: 1px solid var(--gray-400); border-radius: 8px; font-size: 0.9rem;">
+      </div>
+      <div>
+        <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 4px;">Manual de Operaciones</label>
+        <input type="text" id="cfg-manual" placeholder="https://drive.google.com/file/d/..." style="width: 100%; padding: 10px 14px; border: 1px solid var(--gray-400); border-radius: 8px; font-size: 0.9rem;">
+      </div>
+      <div>
+        <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 4px;">Charter del Comité</label>
+        <input type="text" id="cfg-charter" placeholder="https://drive.google.com/file/d/..." style="width: 100%; padding: 10px 14px; border: 1px solid var(--gray-400); border-radius: 8px; font-size: 0.9rem;">
+      </div>
+      <div>
+        <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 4px;">Agenda Semanal</label>
+        <input type="text" id="cfg-agenda" placeholder="https://drive.google.com/file/d/..." style="width: 100%; padding: 10px 14px; border: 1px solid var(--gray-400); border-radius: 8px; font-size: 0.9rem;">
+      </div>
+      <div>
+        <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 4px;">Guía de Project Brief</label>
+        <input type="text" id="cfg-brief" placeholder="https://drive.google.com/file/d/..." style="width: 100%; padding: 10px 14px; border: 1px solid var(--gray-400); border-radius: 8px; font-size: 0.9rem;">
+      </div>
+    </div>
+
+    <div style="margin-top: 20px; display: flex; gap: 12px; align-items: center;">
+      <button onclick="saveConfig()" style="background: var(--accent); color: white; border: none; padding: 12px 28px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.9rem;">Guardar Configuración</button>
+      <span id="save-msg" style="color: var(--green); font-size: 0.85rem; font-weight: 600; display: none;">Guardado</span>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p><span style="font-weight:700; letter-spacing:2px;">YÁNEKEN</span> · Portal Comité AI · Yánekens S.A. · Actualizado Febrero 2026 · Todos los montos en CLP</p>
+</div>
+
+<script>
+// ============ PORTAL CONFIGURATION ============
+var CONFIG_KEY = 'portal_comite_ai_config';
+var DEFAULTS = {
+  'cfg-form': 'https://docs.google.com/forms/d/e/1FAIpQLSeUAmzqmaY1a252D9CLQH4kicRc3DkVZKClNipzCXkQDC64fw/viewform',
+  'cfg-tracker': 'https://docs.google.com/spreadsheets/d/19byfCyONVbLnk_DkCNoAuJbDdcs-Bhu_55y2MRJk5GA/edit?usp=sharing',
+  'cfg-checklist': 'https://docs.google.com/spreadsheets/d/1Kg7YiVYm6uxpQIV1l7N7GjlbQmUwohnd/edit?usp=sharing&ouid=117075654036126053049&rtpof=true&sd=true',
+  'cfg-manual': 'https://docs.google.com/document/d/1RSuv7_DBdIxhYt2Z6SGDXc5-jA8o4kcY/edit?usp=sharing&ouid=117075654036126053049&rtpof=true&sd=true',
+  'cfg-charter': 'https://docs.google.com/document/d/1ddbK76fQrDMvFIz1ktR3N_GEsK7w11KV/edit?usp=sharing&ouid=117075654036126053049&rtpof=true&sd=true',
+  'cfg-agenda': 'https://docs.google.com/document/d/1-IZhMNgvIQ58IEhWmp69Sm5z84Vkus2C/edit?usp=sharing&ouid=117075654036126053049&rtpof=true&sd=true',
+  'cfg-brief': 'https://drive.google.com/file/d/1JtxMvmh5vnqn78PY7wy7R4pLKtriMSG2/view?usp=sharing'
+};
+var LINK_MAP = {
+  'cfg-form':      { selector: '#cta-form-link, .form-link', attr: 'href' },
+  'cfg-tracker':   { cardIndex: 1 },
+  'cfg-checklist': { cardIndex: 2 },
+  'cfg-manual':    { cardIndex: 3 },
+  'cfg-charter':   { cardIndex: 4 },
+  'cfg-agenda':    { cardIndex: 5 }
+};
+
+function loadConfig() {
+  try {
+    var saved = JSON.parse(localStorage.getItem(CONFIG_KEY) || '{}');
+    // Merge defaults with saved config (saved takes priority, but only if non-empty)
+    var cfg = Object.assign({}, DEFAULTS);
+    Object.keys(saved).forEach(function(key) {
+      if (saved[key] && saved[key].trim()) cfg[key] = saved[key];
+    });
+    // Fill inputs
+    Object.keys(cfg).forEach(function(key) {
+      var el = document.getElementById(key);
+      if (el) el.value = cfg[key];
+    });
+    applyConfig(cfg);
+  } catch(e) { console.error('Config error:', e); }
+}
+
+function applyConfig(cfg) {
+  // Apply Google Form link to CTA and card
+  var formUrl = cfg['cfg-form'] || '';
+  if (formUrl) {
+    document.querySelectorAll('#cta-form-link, .form-link').forEach(function(el) {
+      el.href = formUrl;
+    });
+    // QR is a static pre-generated image — just ensure section is visible
+    document.getElementById('qr-section').style.display = 'block';
+  } else {
+    document.getElementById('qr-section').style.display = 'none';
+  }
+
+  // Apply document links to cards
+  var cards = document.querySelectorAll('#docs .card .card-link');
+  var cardKeys = ['cfg-form','cfg-tracker','cfg-checklist','cfg-manual','cfg-charter','cfg-agenda','cfg-brief'];
+  cardKeys.forEach(function(key, i) {
+    var url = cfg[key] || '#';
+    if (cards[i]) cards[i].href = url;
+  });
+}
+
+function saveConfig() {
+  var cfg = {};
+  ['cfg-form','cfg-tracker','cfg-checklist','cfg-manual','cfg-charter','cfg-agenda','cfg-brief'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el && el.value.trim()) cfg[id] = el.value.trim();
+  });
+  localStorage.setItem(CONFIG_KEY, JSON.stringify(cfg));
+  applyConfig(cfg);
+  var msg = document.getElementById('save-msg');
+  msg.style.display = 'inline';
+  setTimeout(function() { msg.style.display = 'none'; }, 2000);
+}
+
+function handleCtaClick() {
+  var link = document.getElementById('cta-form-link').href;
+  if (!link || link === '#' || link.indexOf('#PEGA') > -1 || link === window.location.href + '#') {
+    alert('El formulario aún no está configurado.\\n\\nVe al panel de Configuración al final de esta página y pega el link de tu Google Form.');
+    return false;
+  }
+  return true;
+}
+
+// FAQ toggle
+function toggleFaq(el) {
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('open');
+}
+
+// Smooth scroll for nav
+document.querySelectorAll('.nav a').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    var target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.querySelectorAll('.nav a').forEach(function(n) { n.classList.remove('active') });
+      this.classList.add('active');
+    }
+  });
+});
+
+// Update nav on scroll
+window.addEventListener('scroll', function() {
+  var sections = document.querySelectorAll('.section');
+  var current = '';
+  sections.forEach(function(section) {
+    if (window.scrollY >= section.offsetTop - 100) current = section.id;
+  });
+  document.querySelectorAll('.nav a').forEach(function(a) {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+  });
+});
+
+// Initialize on load
+document.addEventListener('DOMContentLoaded', loadConfig);
+</script>
+</body>
+</html>
