@@ -217,26 +217,26 @@
       </div>
     </div>
 
-    <!-- 6. COSTOS -->
+    <!-- 6. HERRAMIENTAS Y RECURSOS -->
     <div class="component">
       <div class="component-header">
-        6. Costos y Recursos
+        6. Herramientas y Recursos
         <span class="component-tag">Obligatorio</span>
       </div>
       <div class="component-body">
-        <p><strong>Qué es:</strong> Cuánto cuesta en CLP, desglosado por componente. Incluye tanto costos directos como tiempo de personas.</p>
-        <p><strong>Pregunta clave:</strong> ¿Cuánto costará mensualmente y cuántas horas-persona requiere?</p>
+        <p><strong>Qué es:</strong> Qué herramientas, servicios y recursos necesitas para tu proyecto. El comité se encargará de evaluar los costos asociados.</p>
+        <p><strong>Pregunta clave:</strong> ¿Qué herramientas, APIs o servicios necesitas, y cuántas horas-persona requiere?</p>
         <div class="compare">
           <div class="bad">
             <span class="bad-label">Mal</span>
-            "Estimamos unos $500.000 CLP mensuales."
+            "Vamos a usar IA."
           </div>
           <div class="good">
             <span class="good-label">Bien</span>
-            "Costo mensual estimado: $680.000 CLP. Desglose: Claude API Sonnet (~50K tokens/día) = $380.000, Cloud Run (1 instancia) = $85.000, Cloud Storage = $15.000, Vertex AI Embeddings = $50.000, monitoreo = $20.000, buffer 20% = $130.000. Horas-persona: 40h setup inicial (dev senior), 4h/mes mantención."
+            "Herramientas: Claude API (modelo Sonnet, ~50K tokens/día), hosting en Cloud Run (1 instancia), Cloud Storage para documentos, Vertex AI Embeddings para búsqueda semántica, monitoreo con Cloud Monitoring. Horas-persona: 40h setup inicial (dev senior), 4h/mes mantención."
           </div>
         </div>
-        <div class="warn"><strong>Incluye siempre un buffer de 15-20%.</strong> Los costos de APIs de IA son difíciles de estimar con precisión antes de tener datos reales de uso. El comité prefiere una estimación honesta con buffer a una cifra "optimista" que se exceda después.</div>
+        <div class="warn"><strong>Sé específico en las herramientas.</strong> Detalla qué servicios planeas usar y con qué volumen estimado. El comité utilizará esta información para evaluar los costos y clasificar tu proyecto.</div>
       </div>
     </div>
 
@@ -329,8 +329,8 @@
       </div>
 
       <div class="example-field">
-        <div class="example-field-label">Costos (CLP/mes)</div>
-        <div class="example-field-value">Claude API Sonnet (~50K tokens/día): $380.000. Cloud Run: $85.000. Cloud Storage: $15.000. Vertex AI Embeddings: $50.000. Monitoreo: $20.000. Buffer 20%: $130.000. Total: $680.000 CLP/mes. Setup: 40 horas dev senior (2 semanas). Mantención: 4 horas/mes.</div>
+        <div class="example-field-label">Herramientas y Recursos</div>
+        <div class="example-field-value">Claude API Sonnet (~50K tokens/día). Cloud Run (1 instancia). Cloud Storage para base de conocimiento. Vertex AI Embeddings para búsqueda semántica. Cloud Monitoring para alertas. Setup: 40 horas dev senior (2 semanas). Mantención: 4 horas/mes.</div>
       </div>
 
       <div class="example-field">
@@ -353,8 +353,7 @@
       <div class="check-item"><input type="checkbox"> <span>Clasifiqué los datos correctamente (público / interno / confidencial / restringido)</span></div>
       <div class="check-item"><input type="checkbox"> <span>Si uso PII, explico qué controles tendré</span></div>
       <div class="check-item"><input type="checkbox"> <span>Mis métricas tienen baseline actual + target + plazo</span></div>
-      <div class="check-item"><input type="checkbox"> <span>El costo está desglosado por componente (no solo un número total)</span></div>
-      <div class="check-item"><input type="checkbox"> <span>Incluí un buffer de 15-20% en los costos</span></div>
+      <div class="check-item"><input type="checkbox"> <span>Listé todas las herramientas y servicios que necesito, con volúmenes estimados</span></div>
       <div class="check-item"><input type="checkbox"> <span>Listé al menos 2-3 riesgos reales con mitigaciones concretas</span></div>
       <div class="check-item"><input type="checkbox"> <span>Revisé el Project Tracker y no hay duplicación</span></div>
       <div class="check-item"><input type="checkbox"> <span>Alguien que no conoce mi proyecto podría entender este brief</span></div>
@@ -378,9 +377,9 @@
           <td>El objetivo responde "qué logramos". La solución responde "cómo lo hacemos"</td>
         </tr>
         <tr>
-          <td><strong>Costos sin desglose</strong></td>
-          <td>No se puede evaluar si el presupuesto es razonable</td>
-          <td>Detalla cada componente de costo, por pequeño que sea</td>
+          <td><strong>Herramientas sin detalle</strong></td>
+          <td>El comité no puede evaluar costos ni viabilidad sin saber qué usarás</td>
+          <td>Lista cada herramienta, API o servicio con el volumen estimado de uso</td>
         </tr>
         <tr>
           <td><strong>"No hay riesgos"</strong></td>
@@ -399,6 +398,32 @@
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <!-- MVP DOCUMENTATION REQUIREMENTS -->
+  <div class="section">
+    <h2 class="section-title">Requisitos de Documentación MVP</h2>
+    <p class="intro">Si tu proyecto implica construir un MVP, tu postulación debe incluir (o comprometerse a entregar) la siguiente documentación técnica para facilitar la migración a producción por el equipo TI.</p>
+
+    <div class="checklist">
+      <h3>Documentación obligatoria del MVP</h3>
+      <div class="check-item"><input type="checkbox"> <span><strong>Base de datos:</strong> Tablas, campos, tipos de dato, claves primarias/foráneas, relaciones e índices</span></div>
+      <div class="check-item"><input type="checkbox"> <span><strong>Servicios externos:</strong> Nombre, tipo de integración (REST/Webhook/SDK), datos enviados y recibidos, método de autenticación, justificación</span></div>
+      <div class="check-item"><input type="checkbox"> <span><strong>Diagrama de flujo:</strong> Diagrama simple del flujo del sistema (entrada → proceso → resultado)</span></div>
+      <div class="check-item"><input type="checkbox"> <span><strong>Endpoints:</strong> Listado de endpoints si el MVP expone APIs</span></div>
+      <div class="check-item"><input type="checkbox"> <span><strong>Variables de entorno:</strong> Lista de todas las variables de entorno necesarias (sin incluir valores reales)</span></div>
+    </div>
+
+    <div style="background: #fff3e0; border-radius: 8px; padding: 16px; margin-top: 16px; border: 1px solid #ffe0b2;">
+      <strong style="color: #e65100;">Recordatorio técnico:</strong>
+      <ul style="margin: 8px 0 0 20px; font-size: 0.9rem; line-height: 1.6;">
+        <li>El MVP debe usar <strong>Python 3 + SQLite</strong> — no usar NoSQL</li>
+        <li>La estructura de BD debe ser compatible con migración a MySQL/MariaDB</li>
+        <li>No duplicar funcionalidades del proyecto base (autenticación, correos, reportes, etc.)</li>
+        <li>No escribir directamente en SAP S/4 HANA ni en el Data Warehouse</li>
+        <li>Ningún servicio externo pasa a producción sin evaluación del comité</li>
+      </ul>
+    </div>
   </div>
 
 </div>

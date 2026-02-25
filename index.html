@@ -316,7 +316,7 @@
         <div class="step-number">2</div>
         <div class="step-content">
           <h3>Completa el formulario de ingreso</h3>
-          <p>Haz clic en el botón verde de arriba y completa todas las secciones. Necesitarás: descripción del proyecto, objetivo de negocio, datos involucrados, costo estimado en CLP, y nivel de riesgo. <strong>Revisa la <a href="#" class="brief-link" style="color: var(--accent);">Guía de Project Brief</a></strong> para ver ejemplos de buenas vs. malas postulaciones.</p>
+          <p>Haz clic en el botón verde de arriba y completa todas las secciones. Necesitarás: descripción del proyecto, objetivo de negocio, datos involucrados, y herramientas o servicios que planeas usar. <strong>Revisa la <a href="#" class="brief-link" style="color: var(--accent);">Guía de Project Brief</a></strong> para ver ejemplos de buenas vs. malas postulaciones.</p>
           <span class="step-time">~10 min</span>
         </div>
       </div>
@@ -334,7 +334,7 @@
         <div class="step-number">4</div>
         <div class="step-content">
           <h3>Prepara una mini-presentación (opcional)</h3>
-          <p>Si tu proyecto es Nivel 2 o 3, prepara 5 minutos para presentar: el problema, tu solución, los datos que usa, costo estimado, y riesgos principales. Para Nivel 1, no es necesario.</p>
+          <p>Si tu proyecto es Nivel 2 o 3, prepara 5 minutos para presentar: el problema, tu solución, los datos que usa, y riesgos principales. Para Nivel 1, no es necesario.</p>
           <span class="step-time">15-30 min</span>
         </div>
       </div>
@@ -362,7 +362,7 @@
   <!-- TIERS -->
   <div class="section" id="tiers">
     <h2 class="section-title">Niveles de Aprobación</h2>
-    <p style="margin-bottom: 16px; color: var(--gray-600);">El nivel depende del riesgo, costo y exposición de tu proyecto. Si no estás seguro, el comité te ayuda a clasificarlo.</p>
+    <p style="margin-bottom: 16px; color: var(--gray-600);">El comité clasifica tu proyecto según el riesgo, costo y exposición. No necesitas auto-clasificarte — el comité lo determina al revisar tu postulación.</p>
 
     <table class="tier-table">
       <thead>
@@ -491,46 +491,33 @@
 
   <!-- ARCHITECTURE -->
   <div class="section" id="architecture">
-    <h2 class="section-title">Arquitectura & Tech Stack Recomendado</h2>
-    <p style="margin-bottom: 16px; color: var(--gray-600);">Estas son las recomendaciones por defecto para proyectos de IA. Puedes proponer alternativas con justificación en tu formulario de ingreso.</p>
+    <h2 class="section-title">Desarrollo de MVP con IA</h2>
+    <p style="margin-bottom: 16px; color: var(--gray-600);">La empresa permite desarrollar MVPs (Minimum Viable Product) con herramientas de IA. Todo MVP aprobado será migrado y reescrito por el equipo TI al proyecto base en Laravel.</p>
 
     <div class="alert alert-info">
       <span class="alert-icon">🏗️</span>
-      <div><strong>Principio general:</strong> Usamos defaults recomendados, no reglas rígidas. Si tienes una buena razón para usar otra herramienta, justifícalo en el formulario y el comité lo evalúa.</div>
+      <div><strong>Principio clave:</strong> El MVP debe enfocarse en la <strong>lógica del problema</strong>, no en infraestructura. Demuestra el flujo completo (entrada → proceso → resultado) de forma simple y funcional.</div>
     </div>
 
-    <!-- LLM Layer -->
+    <!-- Flujo MVP → Producción -->
     <div style="background: white; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--gray-200); margin-bottom: 20px; overflow: hidden;">
-      <div style="background: var(--accent); color: white; padding: 14px 20px; font-weight: 700; font-size: 0.95rem;">🧠 Capa de Modelos (LLM)</div>
+      <div style="background: var(--accent); color: white; padding: 14px 20px; font-weight: 700; font-size: 0.95rem;">🔄 Flujo: MVP → Producción</div>
       <div style="padding: 20px;">
-        <table class="tier-table" style="box-shadow: none; margin: 0;">
-          <thead>
-            <tr><th>Caso de Uso</th><th>Recomendación</th><th>Notas</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Razonamiento complejo</strong><br><span style="font-size:0.8rem;color:var(--gray-600)">Análisis, decisiones, generación de código, agentes</span></td>
-              <td><span class="badge badge-green">Claude (Anthropic)</span></td>
-              <td>Modelo principal para tareas que requieren precisión, seguimiento de instrucciones complejas, y generación de contenido largo</td>
-            </tr>
-            <tr>
-              <td><strong>Tareas ligeras & alto volumen</strong><br><span style="font-size:0.8rem;color:var(--gray-600)">Clasificación, extracción simple, resúmenes cortos</span></td>
-              <td><span class="badge badge-orange">Gemini (Google)</span></td>
-              <td>Para tareas repetitivas de bajo costo donde la integración con GCP es ventajosa. Usar Gemini Flash para máxima eficiencia</td>
-            </tr>
-            <tr>
-              <td><strong>Embeddings & búsqueda semántica</strong><br><span style="font-size:0.8rem;color:var(--gray-600)">RAG, indexación, similarity search</span></td>
-              <td><span class="badge badge-orange">Vertex AI Embeddings</span></td>
-              <td>Integración nativa con GCP. Alternativa: embeddings de Anthropic si el pipeline ya usa Claude</td>
-            </tr>
-          </tbody>
-        </table>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; font-size: 0.9rem; margin-bottom: 16px;">
+          <div style="background: var(--accent-light); padding: 10px 16px; border-radius: 8px; font-weight: 600; text-align: center;">1. Postulas tu idea<br><span style="font-weight: 400; font-size: 0.8rem;">Formulario</span></div>
+          <div style="color: var(--accent); font-size: 1.2rem;">→</div>
+          <div style="background: var(--accent-light); padding: 10px 16px; border-radius: 8px; font-weight: 600; text-align: center;">2. Comité aprueba<br><span style="font-weight: 400; font-size: 0.8rem;">Revisión semanal</span></div>
+          <div style="color: var(--accent); font-size: 1.2rem;">→</div>
+          <div style="background: var(--accent-light); padding: 10px 16px; border-radius: 8px; font-weight: 600; text-align: center;">3. Tú construyes el MVP<br><span style="font-weight: 400; font-size: 0.8rem;">Python + SQLite</span></div>
+          <div style="color: var(--accent); font-size: 1.2rem;">→</div>
+          <div style="background: var(--accent-light); padding: 10px 16px; border-radius: 8px; font-weight: 600; text-align: center;">4. TI migra a producción<br><span style="font-weight: 400; font-size: 0.8rem;">Laravel</span></div>
+        </div>
       </div>
     </div>
 
-    <!-- Backend Layer -->
+    <!-- Stack MVP -->
     <div style="background: white; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--gray-200); margin-bottom: 20px; overflow: hidden;">
-      <div style="background: var(--accent); color: white; padding: 14px 20px; font-weight: 700; font-size: 0.95rem;">⚙️ Backend & Desarrollo</div>
+      <div style="background: var(--accent); color: white; padding: 14px 20px; font-weight: 700; font-size: 0.95rem;">🛠 Stack para el MVP</div>
       <div style="padding: 20px;">
         <table class="tier-table" style="box-shadow: none; margin: 0;">
           <thead>
@@ -538,80 +525,95 @@
           </thead>
           <tbody>
             <tr>
-              <td><strong>Lenguaje principal</strong></td>
-              <td><span class="badge badge-green">Python 3.11+</span></td>
-              <td>Ecosistema maduro para IA/ML. Usar type hints, virtual envs, y linters</td>
-            </tr>
-            <tr>
-              <td><strong>Framework API</strong></td>
-              <td>FastAPI (recomendado) o Flask</td>
-              <td>FastAPI para proyectos nuevos (async, tipado, docs automáticas). Flask si el equipo ya tiene experiencia</td>
-            </tr>
-            <tr>
-              <td><strong>Orchestración de LLM</strong></td>
-              <td>SDKs nativos (Anthropic SDK, Google AI SDK)</td>
-              <td>Preferir SDKs oficiales sobre frameworks como LangChain. Más control, menos dependencias, más fácil de debuggear</td>
-            </tr>
-            <tr>
-              <td><strong>Manejo de prompts</strong></td>
-              <td>Repositorio centralizado de prompts</td>
-              <td>Usar un repo Git compartido para prompts versionados. No hardcodear prompts en el código</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- Infrastructure Layer -->
-    <div style="background: white; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--gray-200); margin-bottom: 20px; overflow: hidden;">
-      <div style="background: var(--accent); color: white; padding: 14px 20px; font-weight: 700; font-size: 0.95rem;">☁️ Infraestructura (GCP)</div>
-      <div style="padding: 20px;">
-        <table class="tier-table" style="box-shadow: none; margin: 0;">
-          <thead>
-            <tr><th>Servicio</th><th>Recomendación</th><th>Cuándo usar</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Compute</strong></td>
-              <td>Cloud Run (default) / GKE (escala)</td>
-              <td>Cloud Run para la mayoría de proyectos. GKE solo si necesitas orquestación compleja o GPUs</td>
-            </tr>
-            <tr>
-              <td><strong>Funciones serverless</strong></td>
-              <td>Cloud Functions</td>
-              <td>Para triggers, webhooks, procesamiento event-driven. Ideal para Nivel 1</td>
-            </tr>
-            <tr>
-              <td><strong>Almacenamiento</strong></td>
-              <td>Cloud Storage (archivos) / BigQuery (analytics)</td>
-              <td>Cloud Storage para documentos y datos no estructurados. BigQuery para análisis y dashboards</td>
+              <td><strong>Lenguaje</strong></td>
+              <td><span class="badge badge-green">Python 3</span></td>
+              <td>Desarrollo rápido, ecosistema maduro para IA/ML</td>
             </tr>
             <tr>
               <td><strong>Base de datos</strong></td>
-              <td><span style="color: var(--orange); font-weight: 600;">⏳ Pendiente definición con IT</span></td>
-              <td>El equipo de IT está evaluando opciones. Por ahora: Cloud SQL (PostgreSQL) para proyectos que necesiten DB relacional, Firestore para NoSQL</td>
+              <td><span class="badge badge-green">SQLite</span></td>
+              <td>Obligatorio. No usar NoSQL. La estructura debe ser compatible con migración a MySQL/MariaDB</td>
             </tr>
             <tr>
-              <td><strong>Vector DB (RAG)</strong></td>
-              <td>Vertex AI Vector Search / pgvector</td>
-              <td>Vertex AI para escala. pgvector en Cloud SQL para proyectos más simples que ya usen PostgreSQL</td>
+              <td><strong>Framework API (opcional)</strong></td>
+              <td>FastAPI</td>
+              <td>Solo si necesitas exponer endpoints. Genera documentación automática con Swagger/OpenAPI</td>
             </tr>
             <tr>
-              <td><strong>Secrets & Config</strong></td>
-              <td>Secret Manager</td>
-              <td><strong>Obligatorio.</strong> Nunca hardcodear API keys. Usar Secret Manager para todas las credenciales</td>
-            </tr>
-            <tr>
-              <td><strong>Monitoreo</strong></td>
-              <td>Cloud Monitoring + Logging</td>
-              <td>Todo proyecto debe tener logging estructurado y alertas básicas configuradas</td>
+              <td><strong>Modelos LLM</strong></td>
+              <td>Claude (Anthropic) / Gemini (Google)</td>
+              <td>Usar SDKs oficiales. No hardcodear API keys — usar variables de entorno</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <!-- Collaboration Layer -->
+    <!-- Stack Producción -->
+    <div style="background: white; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--gray-200); margin-bottom: 20px; overflow: hidden;">
+      <div style="background: var(--accent); color: white; padding: 14px 20px; font-weight: 700; font-size: 0.95rem;">🏭 Stack de Producción (gestionado por TI)</div>
+      <div style="padding: 20px;">
+        <table class="tier-table" style="box-shadow: none; margin: 0;">
+          <thead>
+            <tr><th>Capa</th><th>Tecnología</th><th>Detalle</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Backend</strong></td>
+              <td>PHP 8.4 + Laravel 12</td>
+              <td>Proyecto base con roles, permisos, reportes, APIs, tareas programadas ya implementados</td>
+            </tr>
+            <tr>
+              <td><strong>Frontend</strong></td>
+              <td>Inertia.js 2 + Vue 3 + TypeScript + Tailwind CSS 4</td>
+              <td>Componentes con shadcn/vue</td>
+            </tr>
+            <tr>
+              <td><strong>Base de datos</strong></td>
+              <td>MySQL / MariaDB</td>
+              <td>Base de datos principal del sistema Laravel</td>
+            </tr>
+            <tr>
+              <td><strong>Datos operacionales</strong></td>
+              <td>SAP S/4 HANA (solo lectura)</td>
+              <td>Datos críticos en tiempo real</td>
+            </tr>
+            <tr>
+              <td><strong>Datos históricos</strong></td>
+              <td>Data Warehouse — PostgreSQL (solo lectura)</td>
+              <td>Datos históricos y no críticos</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Documentación requerida -->
+    <div style="background: white; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--gray-200); margin-bottom: 20px; overflow: hidden;">
+      <div style="background: var(--accent); color: white; padding: 14px 20px; font-weight: 700; font-size: 0.95rem;">📋 Documentación Obligatoria del MVP</div>
+      <div style="padding: 20px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px;">
+          <div style="background: var(--accent-light); border-radius: 8px; padding: 14px;">
+            <strong style="color: var(--accent);">Base de datos</strong>
+            <p style="font-size: 0.85rem; margin-top: 6px;">Tablas, campos, tipos de dato, claves primarias/foráneas, relaciones, índices</p>
+          </div>
+          <div style="background: var(--accent-light); border-radius: 8px; padding: 14px;">
+            <strong style="color: var(--accent);">Servicios externos</strong>
+            <p style="font-size: 0.85rem; margin-top: 6px;">Nombre, tipo de integración (REST/Webhook/SDK), datos enviados/recibidos, autenticación, justificación</p>
+          </div>
+          <div style="background: var(--accent-light); border-radius: 8px; padding: 14px;">
+            <strong style="color: var(--accent);">Flujo del sistema</strong>
+            <p style="font-size: 0.85rem; margin-top: 6px;">Diagrama simple del flujo, endpoints (si aplica), variables de entorno necesarias</p>
+          </div>
+          <div style="background: var(--accent-light); border-radius: 8px; padding: 14px;">
+            <strong style="color: var(--accent);">Servicios no autorizados</strong>
+            <p style="font-size: 0.85rem; margin-top: 6px;">Ningún servicio externo pasa a producción sin evaluación del comité</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Colaboración -->
     <div style="background: white; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--gray-200); margin-bottom: 20px; overflow: hidden;">
       <div style="background: var(--accent); color: white; padding: 14px 20px; font-weight: 700; font-size: 0.95rem;">🤝 Colaboración & Productividad</div>
       <div style="padding: 20px;">
@@ -628,16 +630,18 @@
       </div>
     </div>
 
-    <!-- Anti-patterns -->
+    <!-- Restricciones -->
     <div style="background: var(--red-light); border-radius: var(--radius); padding: 20px; margin-top: 20px; border: 1px solid #FFCDD2;">
-      <h3 style="color: var(--red); margin-bottom: 12px; font-size: 1rem;">🚫 Anti-patrones — Lo que NO hacer</h3>
+      <h3 style="color: var(--red); margin-bottom: 12px; font-size: 1rem;">🚫 Restricciones — Lo que NO hacer en un MVP</h3>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px;">
-        <div style="font-size: 0.9rem;"><strong>No hardcodear API keys</strong> — usar Secret Manager siempre</div>
-        <div style="font-size: 0.9rem;"><strong>No usar datos de producción en experimentos</strong> — sin aprobación explícita</div>
-        <div style="font-size: 0.9rem;"><strong>No crear repos privados sin avisar</strong> — todo proyecto debe estar en el tracker</div>
-        <div style="font-size: 0.9rem;"><strong>No usar LLMs para decisiones críticas sin human-in-the-loop</strong></div>
-        <div style="font-size: 0.9rem;"><strong>No deployar sin logging</strong> — todo servicio debe tener observabilidad básica</div>
-        <div style="font-size: 0.9rem;"><strong>No reinventar la rueda</strong> — revisar el tracker antes de empezar algo nuevo</div>
+        <div style="font-size: 0.9rem;"><strong>No escribir en SAP S/4 HANA</strong> — solo lectura</div>
+        <div style="font-size: 0.9rem;"><strong>No escribir en el Data Warehouse</strong> — solo lectura</div>
+        <div style="font-size: 0.9rem;"><strong>No crear sistema de autenticación propio</strong> — ya existe en el proyecto base</div>
+        <div style="font-size: 0.9rem;"><strong>No implementar sistema de correos propio</strong> — ya existe en el proyecto base</div>
+        <div style="font-size: 0.9rem;"><strong>No duplicar funcionalidades del proyecto base</strong> — roles, reportes, APIs, etc.</div>
+        <div style="font-size: 0.9rem;"><strong>No hardcodear credenciales</strong> — usar variables de entorno</div>
+        <div style="font-size: 0.9rem;"><strong>No usar NoSQL</strong> — solo SQLite, compatible con MySQL/MariaDB</div>
+        <div style="font-size: 0.9rem;"><strong>No usar datos de producción sin aprobación</strong> — del comité</div>
       </div>
     </div>
   </div>
@@ -694,7 +698,7 @@
         Mi proyecto es urgente, ¿puedo saltarme el proceso?
         <span class="arrow">▼</span>
       </div>
-      <div class="faq-a">Si tu proyecto es Nivel 1 (bajo riesgo, &lt;$500.000 CLP/mes), puedes solicitar aprobación express por email a sgr@ynk.cl. Para Niveles 2 y 3, debes esperar a la reunión del miércoles salvo una justificación de urgencia aprobada por el Presidente.</div>
+      <div class="faq-a">Si el comité determina que tu proyecto es Nivel 1 (bajo riesgo), puedes recibir aprobación express sin esperar al miércoles. Para proyectos urgentes, escribe a sgr@ynk.cl con asunto "[Comité AI] Express" y el comité evaluará si aplica fast-track.</div>
     </div>
 
     <div class="faq-item">
