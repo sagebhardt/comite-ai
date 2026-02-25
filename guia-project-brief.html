@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cómo Escribir un Buen Project Brief — Comité AI — Yánekens S.A.</title>
+<style>
+  :root { --accent: #3300FF; --accent-light: #E8E0FF; --green: #2E7D32; --green-light: #E8F5E9; --orange: #FF6600; --orange-light: #FFF3E0; --red: #C62828; --red-light: #FFEBEE; --gray-50: #FAFAFA; --gray-200: #EEEEEE; --gray-600: #757575; --gray-800: #424242; --radius: 12px; --shadow: 0 2px 12px rgba(0,0,0,0.08); }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Helvetica Neue', Helvetica, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; background: var(--gray-50); color: var(--gray-800); line-height: 1.7; }
+  .header { background: linear-gradient(135deg, var(--accent) 0%, #2200CC 100%); color: white; padding: 48px 24px 36px; text-align: center; }
+  .header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+  .header p { font-size: 1rem; opacity: 0.85; max-width: 600px; margin: 0 auto; }
+  .container { max-width: 780px; margin: 0 auto; padding: 32px 24px; }
+  .section { margin-bottom: 40px; }
+  .section-title { font-size: 1.3rem; font-weight: 700; color: var(--accent); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid var(--accent-light); }
+  .intro { font-size: 0.95rem; color: var(--gray-600); margin-bottom: 24px; }
+
+  /* Component cards */
+  .component { background: white; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--gray-200); margin-bottom: 20px; overflow: hidden; }
+  .component-header { background: var(--accent); color: white; padding: 14px 20px; font-weight: 700; font-size: 0.95rem; display: flex; justify-content: space-between; align-items: center; }
+  .component-tag { background: rgba(255,255,255,0.2); padding: 2px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+  .component-body { padding: 20px; }
+  .component-body p { font-size: 0.9rem; margin-bottom: 12px; }
+  .component-body p:last-child { margin-bottom: 0; }
+
+  /* Good vs Bad examples */
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px; }
+  @media (max-width: 640px) { .compare { grid-template-columns: 1fr; } }
+  .bad, .good { border-radius: 8px; padding: 14px 16px; font-size: 0.85rem; }
+  .bad { background: var(--red-light); border-left: 4px solid var(--red); }
+  .good { background: var(--green-light); border-left: 4px solid var(--green); }
+  .bad-label, .good-label { font-weight: 700; font-size: 0.8rem; margin-bottom: 6px; display: block; }
+  .bad-label { color: var(--red); }
+  .good-label { color: var(--green); }
+
+  /* Tips */
+  .tip { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 14px 18px; border-radius: 0 10px 10px 0; margin: 16px 0; font-size: 0.88rem; }
+  .warn { background: var(--orange-light); border-left: 4px solid var(--orange); padding: 14px 18px; border-radius: 0 10px 10px 0; margin: 16px 0; font-size: 0.88rem; }
+
+  /* Checklist */
+  .checklist { background: white; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--gray-200); padding: 24px; margin-top: 24px; }
+  .checklist h3 { color: var(--accent); margin-bottom: 14px; font-size: 1.05rem; }
+  .check-item { padding: 6px 0; font-size: 0.9rem; display: flex; gap: 10px; align-items: flex-start; }
+  .check-item input { margin-top: 5px; }
+
+  /* Score guide */
+  .score-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+  .score-table th { background: var(--accent); color: white; padding: 10px 14px; text-align: left; font-size: 0.85rem; }
+  .score-table td { padding: 10px 14px; border-bottom: 1px solid var(--gray-200); font-size: 0.88rem; }
+  .score-table tr:hover td { background: var(--gray-50); }
+
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+  .badge-green { background: var(--green-light); color: var(--green); }
+  .badge-orange { background: var(--orange-light); color: var(--orange); }
+  .badge-red { background: var(--red-light); color: var(--red); }
+
+  .footer { text-align: center; padding: 32px 24px; color: var(--gray-600); font-size: 0.85rem; border-top: 1px solid var(--gray-200); margin-top: 40px; }
+
+  /* Example brief */
+  .example-brief { background: white; border-radius: var(--radius); border: 2px solid var(--green); padding: 24px; margin-top: 20px; }
+  .example-brief h3 { color: var(--green); margin-bottom: 16px; }
+  .example-field { margin-bottom: 14px; }
+  .example-field-label { font-weight: 700; font-size: 0.85rem; color: var(--accent); margin-bottom: 2px; }
+  .example-field-value { font-size: 0.88rem; color: var(--gray-800); padding-left: 12px; border-left: 3px solid var(--accent-light); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div style="font-size: 0.85rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; opacity: 0.8; margin-bottom: 10px;">YÁNEKEN</div>
+  <h1>Cómo Escribir un Buen Project Brief</h1>
+  <p>Guía práctica para que tu postulación al Comité AI sea clara, completa, y se apruebe rápido</p>
+</div>
+
+<div class="container">
+
+  <!-- INTRO -->
+  <div class="section">
+    <p class="intro">Un buen project brief no necesita ser largo — necesita ser <strong>claro</strong>. El comité evalúa decenas de propuestas, y las que se aprueban más rápido son las que responden las preguntas correctas sin rodeos. Esta guía te muestra exactamente qué incluir y cómo escribirlo.</p>
+
+    <div class="tip"><strong>Regla de oro:</strong> Si alguien que no conoce tu proyecto lee tu brief y entiende qué quieres hacer, por qué, y cuánto cuesta — está bien escrito.</div>
+  </div>
+
+  <!-- THE 7 COMPONENTS -->
+  <div class="section">
+    <h2 class="section-title">Los 7 Componentes de un Buen Brief</h2>
+
+    <!-- 1. PROBLEMA -->
+    <div class="component">
+      <div class="component-header">
+        1. El Problema
+        <span class="component-tag">Obligatorio</span>
+      </div>
+      <div class="component-body">
+        <p><strong>Qué es:</strong> La situación actual que quieres resolver. No la solución — el problema.</p>
+        <p><strong>Pregunta clave:</strong> ¿Qué dolor existe hoy y quién lo sufre?</p>
+        <div class="compare">
+          <div class="bad">
+            <span class="bad-label">Mal</span>
+            "Queremos usar IA para mejorar el proceso de soporte."
+          </div>
+          <div class="good">
+            <span class="good-label">Bien</span>
+            "El equipo de soporte recibe ~120 tickets/día. El 60% son preguntas repetitivas (estado de pedido, políticas de devolución). Cada agente gasta 3-4 horas/día en estas consultas, dejando poco tiempo para casos complejos. El tiempo promedio de respuesta es 4.2 horas."
+          </div>
+        </div>
+        <div class="tip"><strong>Tip:</strong> Incluye números siempre que puedas. "Muchos tickets" no dice nada. "120 tickets/día, 60% repetitivos" dice todo.</div>
+      </div>
+    </div>
+
+    <!-- 2. OBJETIVO -->
+    <div class="component">
+      <div class="component-header">
+        2. El Objetivo de Negocio
+        <span class="component-tag">Obligatorio</span>
+      </div>
+      <div class="component-body">
+        <p><strong>Qué es:</strong> El resultado que esperas lograr, expresado en términos de negocio (no técnicos).</p>
+        <p><strong>Pregunta clave:</strong> ¿Qué cambia concretamente si este proyecto funciona?</p>
+        <div class="compare">
+          <div class="bad">
+            <span class="bad-label">Mal</span>
+            "Implementar un chatbot con Claude para soporte."
+          </div>
+          <div class="good">
+            <span class="good-label">Bien</span>
+            "Reducir el tiempo de respuesta a consultas repetitivas de 4.2h a menos de 5 minutos, liberando al equipo para resolver los tickets complejos que hoy se demoran 24h+."
+          </div>
+        </div>
+        <div class="warn"><strong>Error común:</strong> Confundir el objetivo con la solución. "Implementar un chatbot" es una solución. "Reducir el tiempo de respuesta en un 80%" es un objetivo. Describe el <em>qué</em>, no el <em>cómo</em>.</div>
+      </div>
+    </div>
+
+    <!-- 3. SOLUCIÓN -->
+    <div class="component">
+      <div class="component-header">
+        3. La Solución Propuesta
+        <span class="component-tag">Obligatorio</span>
+      </div>
+      <div class="component-body">
+        <p><strong>Qué es:</strong> Cómo piensas resolver el problema usando IA. Aquí sí es técnico.</p>
+        <p><strong>Pregunta clave:</strong> ¿Cómo funciona tu solución y qué tecnología usa?</p>
+        <div class="compare">
+          <div class="bad">
+            <span class="bad-label">Mal</span>
+            "Vamos a usar Claude para responder preguntas automáticamente."
+          </div>
+          <div class="good">
+            <span class="good-label">Bien</span>
+            "Chatbot interno que usa Claude API (Sonnet) con RAG sobre nuestra base de conocimientos de soporte (~200 artículos en Zendesk). El usuario escribe su pregunta en un widget web, Claude busca artículos relevantes y genera una respuesta. Si la confianza es baja, escala a un agente humano. Backend en Python/FastAPI, desplegado en Cloud Run."
+          </div>
+        </div>
+        <p style="margin-top:12px">Incluye en tu descripción:</p>
+        <div style="padding-left: 16px; font-size: 0.88rem; color: var(--gray-600);">
+          <div style="margin-bottom: 4px;">• Qué modelo de IA usarás (Claude, Gemini, etc.) y por qué</div>
+          <div style="margin-bottom: 4px;">• De dónde saca los datos la IA</div>
+          <div style="margin-bottom: 4px;">• Cómo interactúa el usuario con la solución</div>
+          <div style="margin-bottom: 4px;">• Qué pasa cuando la IA no sabe la respuesta (fallback)</div>
+          <div>• Stack técnico (lenguaje, framework, infraestructura)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. DATOS -->
+    <div class="component">
+      <div class="component-header">
+        4. Datos y Seguridad
+        <span class="component-tag">Obligatorio</span>
+      </div>
+      <div class="component-body">
+        <p><strong>Qué es:</strong> Qué datos toca tu proyecto y qué tan sensibles son.</p>
+        <p><strong>Pregunta clave:</strong> ¿Qué información procesa la IA y quién puede verla?</p>
+        <div class="compare">
+          <div class="bad">
+            <span class="bad-label">Mal</span>
+            "Usa datos de la empresa."
+          </div>
+          <div class="good">
+            <span class="good-label">Bien</span>
+            "Accede a: (1) artículos de Zendesk (internos, no sensibles), (2) historial de tickets (contiene nombres y emails de clientes = PII). Los datos se procesan via API de Claude — no se almacenan respuestas. Acceso restringido al equipo de soporte (8 personas) via SSO."
+          </div>
+        </div>
+        <p style="margin-top: 12px;">Clasifica tus datos:</p>
+        <table class="score-table">
+          <thead><tr><th>Nivel</th><th>Ejemplos</th><th>Implicancia</th></tr></thead>
+          <tbody>
+            <tr><td><span class="badge badge-green">Público</span></td><td>Info del sitio web, catálogos, precios publicados</td><td>Sin restricciones adicionales</td></tr>
+            <tr><td><span class="badge badge-green">Interno</span></td><td>Procesos, manuales, artículos de soporte</td><td>No compartir fuera de la empresa</td></tr>
+            <tr><td><span class="badge badge-orange">Confidencial</span></td><td>Ventas, márgenes, estrategia, datos financieros</td><td>Requiere controles de acceso</td></tr>
+            <tr><td><span class="badge badge-red">Restringido</span></td><td>PII de clientes, datos regulados, contratos</td><td>Requiere aprobación legal + controles estrictos</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 5. MÉTRICAS -->
+    <div class="component">
+      <div class="component-header">
+        5. Métricas de Éxito
+        <span class="component-tag">Obligatorio</span>
+      </div>
+      <div class="component-body">
+        <p><strong>Qué es:</strong> Cómo sabrás si el proyecto funcionó. Números concretos con los que te comprometes.</p>
+        <p><strong>Pregunta clave:</strong> ¿Qué medirás y cuánto tiene que mejorar para considerarlo un éxito?</p>
+        <div class="compare">
+          <div class="bad">
+            <span class="bad-label">Mal</span>
+            "Mejorar la satisfacción del cliente."
+          </div>
+          <div class="good">
+            <span class="good-label">Bien</span>
+            "KPIs a 90 días: (1) Tiempo de respuesta a tickets repetitivos: de 4.2h a &lt;5 min, (2) % de tickets resueltos sin humano: target 40%, (3) CSAT en respuestas del bot: &gt;4.0/5.0, (4) Costo por ticket: de $2.800 CLP a $400 CLP."
+          </div>
+        </div>
+        <div class="tip"><strong>Estructura recomendada:</strong> Para cada métrica, incluye el valor actual (baseline), el valor objetivo (target), y en cuánto tiempo esperas lograrlo.</div>
+      </div>
+    </div>
+
+    <!-- 6. COSTOS -->
+    <div class="component">
+      <div class="component-header">
+        6. Costos y Recursos
+        <span class="component-tag">Obligatorio</span>
+      </div>
+      <div class="component-body">
+        <p><strong>Qué es:</strong> Cuánto cuesta en CLP, desglosado por componente. Incluye tanto costos directos como tiempo de personas.</p>
+        <p><strong>Pregunta clave:</strong> ¿Cuánto costará mensualmente y cuántas horas-persona requiere?</p>
+        <div class="compare">
+          <div class="bad">
+            <span class="bad-label">Mal</span>
+            "Estimamos unos $500.000 CLP mensuales."
+          </div>
+          <div class="good">
+            <span class="good-label">Bien</span>
+            "Costo mensual estimado: $680.000 CLP. Desglose: Claude API Sonnet (~50K tokens/día) = $380.000, Cloud Run (1 instancia) = $85.000, Cloud Storage = $15.000, Vertex AI Embeddings = $50.000, monitoreo = $20.000, buffer 20% = $130.000. Horas-persona: 40h setup inicial (dev senior), 4h/mes mantención."
+          </div>
+        </div>
+        <div class="warn"><strong>Incluye siempre un buffer de 15-20%.</strong> Los costos de APIs de IA son difíciles de estimar con precisión antes de tener datos reales de uso. El comité prefiere una estimación honesta con buffer a una cifra "optimista" que se exceda después.</div>
+      </div>
+    </div>
+
+    <!-- 7. RIESGOS -->
+    <div class="component">
+      <div class="component-header">
+        7. Riesgos y Mitigación
+        <span class="component-tag">Obligatorio</span>
+      </div>
+      <div class="component-body">
+        <p><strong>Qué es:</strong> Qué podría salir mal y qué harás al respecto. El comité valora la honestidad sobre la venta.</p>
+        <p><strong>Pregunta clave:</strong> ¿Cuáles son los 3 principales riesgos y cómo los manejarás?</p>
+        <div class="compare">
+          <div class="bad">
+            <span class="bad-label">Mal</span>
+            "Riesgo bajo, no vemos problemas."
+          </div>
+          <div class="good">
+            <span class="good-label">Bien</span>
+            "Riesgos: (1) Alucinaciones — el bot podría dar info incorrecta sobre políticas. Mitigación: respuestas solo basadas en artículos verificados + disclaimer + botón de escalamiento. (2) Costos mayores a lo estimado si el volumen sube. Mitigación: alerta automática al 80% del presupuesto + rate limiting. (3) Baja adopción por el equipo. Mitigación: piloto de 2 semanas con 3 agentes antes del rollout completo."
+          </div>
+        </div>
+        <p style="margin-top: 12px;">Todo proyecto tiene riesgos. Decir "no hay riesgos" no genera confianza — genera preocupación de que no pensaste bien el proyecto.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BONUS COMPONENTS -->
+  <div class="section">
+    <h2 class="section-title">Bonus: Lo que Diferencia un Brief Excelente</h2>
+    <p class="intro">Estos elementos no son obligatorios, pero los mejores briefs los incluyen y se aprueban más rápido.</p>
+
+    <div class="component">
+      <div class="component-header" style="background: var(--green);">
+        Elementos que Suman Puntos
+      </div>
+      <div class="component-body">
+        <div style="display: grid; gap: 12px;">
+          <div style="font-size: 0.9rem;">
+            <strong>Timeline con hitos:</strong> No solo "Marzo a Mayo" sino "Semana 1-2: prototipo, Semana 3-4: piloto con 3 usuarios, Semana 5-8: iteración, Semana 9: rollout". Demuestra que tienes un plan real.
+          </div>
+          <div style="font-size: 0.9rem;">
+            <strong>Alternativas consideradas:</strong> "Evaluamos también usar Gemini Flash (más barato pero menos preciso en español) y una solución de Zendesk AI (más cara, $2M CLP/mes, menos personalizable)." Muestra que no es capricho.
+          </div>
+          <div style="font-size: 0.9rem;">
+            <strong>Plan B / criterios de abandono:</strong> "Si a los 30 días el CSAT está bajo 3.5/5.0, pausamos y reevaluamos antes de invertir más." Le da confianza al comité de que no se van a quemar recursos indefinidamente.
+          </div>
+          <div style="font-size: 0.9rem;">
+            <strong>Verificación de duplicación:</strong> "Revisé el Project Tracker — el proyecto de Marketing (#AI-012) usa Claude para generar contenido, pero no tiene componente de soporte. Hablé con María (dueña) y confirmamos que no hay overlap."
+          </div>
+          <div style="font-size: 0.9rem;">
+            <strong>Impacto cuantificado:</strong> "Si reducimos el costo por ticket de $2.800 a $400 CLP en 70 tickets/día (los repetitivos), el ahorro es ~$5M CLP/mes. ROI positivo desde el mes 2."
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAMPLE BRIEF -->
+  <div class="section">
+    <h2 class="section-title">Ejemplo Completo de un Buen Brief</h2>
+    <p class="intro">Así se ve un brief que el comité puede evaluar y aprobar rápido:</p>
+
+    <div class="example-brief">
+      <h3>Ejemplo: Chatbot de Soporte Tier 1</h3>
+
+      <div class="example-field">
+        <div class="example-field-label">Problema</div>
+        <div class="example-field-value">El equipo de soporte (8 personas) recibe ~120 tickets/día. El 60% son preguntas repetitivas sobre estado de pedidos, políticas de devolución y horarios. Cada agente dedica 3-4 horas/día a estas consultas. El tiempo promedio de primera respuesta es 4.2 horas, y nuestro SLA target es 2 horas. Estamos incumpliendo el SLA en un 35% de los tickets.</div>
+      </div>
+
+      <div class="example-field">
+        <div class="example-field-label">Objetivo</div>
+        <div class="example-field-value">Resolver automáticamente el 40% de los tickets repetitivos, reduciendo el tiempo de respuesta a menos de 5 minutos para esas consultas, y liberando ~20 horas-persona/día para tickets complejos.</div>
+      </div>
+
+      <div class="example-field">
+        <div class="example-field-label">Solución</div>
+        <div class="example-field-value">Chatbot web integrado en el portal de soporte. Usa Claude API (Sonnet) con RAG sobre los 200 artículos de Zendesk. El usuario describe su problema, Claude busca artículos relevantes y genera una respuesta personalizada. Si la confianza es baja o el usuario no queda satisfecho, escala a un agente humano con el contexto de la conversación. Stack: Python 3.11, FastAPI, Cloud Run, Vertex AI Embeddings para el índice de búsqueda.</div>
+      </div>
+
+      <div class="example-field">
+        <div class="example-field-label">Datos</div>
+        <div class="example-field-value">Fuentes: artículos de Zendesk (internos, no sensibles) + historial de tickets (contiene nombres y emails de clientes = PII). Clasificación: Restringido por PII. Los datos se envían a Claude API pero no se almacenan respuestas. Acceso limitado a equipo de soporte via SSO corporativo.</div>
+      </div>
+
+      <div class="example-field">
+        <div class="example-field-label">Métricas de Éxito (a 90 días)</div>
+        <div class="example-field-value">Tiempo de respuesta tickets repetitivos: 4.2h → &lt;5 min. Tickets resueltos sin humano: 0% → 40%. CSAT en respuestas del bot: target &gt;4.0/5.0. Costo por ticket repetitivo: $2.800 → $400 CLP. Cumplimiento de SLA general: 65% → 85%.</div>
+      </div>
+
+      <div class="example-field">
+        <div class="example-field-label">Costos (CLP/mes)</div>
+        <div class="example-field-value">Claude API Sonnet (~50K tokens/día): $380.000. Cloud Run: $85.000. Cloud Storage: $15.000. Vertex AI Embeddings: $50.000. Monitoreo: $20.000. Buffer 20%: $130.000. Total: $680.000 CLP/mes. Setup: 40 horas dev senior (2 semanas). Mantención: 4 horas/mes.</div>
+      </div>
+
+      <div class="example-field">
+        <div class="example-field-label">Riesgos</div>
+        <div class="example-field-value">(1) Alucinaciones: respuestas incorrectas sobre políticas. Mitigación: respuestas solo de artículos verificados + disclaimer + botón "Hablar con agente". (2) Sobrecosto si sube el volumen. Mitigación: alerta al 80% del presupuesto + rate limiting en 200 consultas/día. (3) Baja adopción. Mitigación: piloto 2 semanas con 3 agentes, iteración antes de rollout. Criterio de abandono: si CSAT &lt;3.5 a los 30 días, pausamos.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRE-SUBMIT CHECKLIST -->
+  <div class="section">
+    <h2 class="section-title">Checklist Pre-Envío</h2>
+    <p class="intro">Antes de enviar tu postulación, verifica que puedas responder "sí" a cada punto:</p>
+
+    <div class="checklist">
+      <h3>Antes de hacer clic en "Enviar"</h3>
+      <div class="check-item"><input type="checkbox"> <span>El problema está descrito con datos concretos (no solo "mejorar X")</span></div>
+      <div class="check-item"><input type="checkbox"> <span>El objetivo es medible y tiene un número asociado</span></div>
+      <div class="check-item"><input type="checkbox"> <span>La solución técnica está descrita con suficiente detalle para que alguien la entienda sin preguntarte</span></div>
+      <div class="check-item"><input type="checkbox"> <span>Clasifiqué los datos correctamente (público / interno / confidencial / restringido)</span></div>
+      <div class="check-item"><input type="checkbox"> <span>Si uso PII, explico qué controles tendré</span></div>
+      <div class="check-item"><input type="checkbox"> <span>Mis métricas tienen baseline actual + target + plazo</span></div>
+      <div class="check-item"><input type="checkbox"> <span>El costo está desglosado por componente (no solo un número total)</span></div>
+      <div class="check-item"><input type="checkbox"> <span>Incluí un buffer de 15-20% en los costos</span></div>
+      <div class="check-item"><input type="checkbox"> <span>Listé al menos 2-3 riesgos reales con mitigaciones concretas</span></div>
+      <div class="check-item"><input type="checkbox"> <span>Revisé el Project Tracker y no hay duplicación</span></div>
+      <div class="check-item"><input type="checkbox"> <span>Alguien que no conoce mi proyecto podría entender este brief</span></div>
+    </div>
+  </div>
+
+  <!-- COMMON MISTAKES -->
+  <div class="section">
+    <h2 class="section-title">Errores Frecuentes que Atrasan la Aprobación</h2>
+    <table class="score-table">
+      <thead><tr><th>Error</th><th>Por qué atrasa</th><th>Solución</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Brief demasiado vago</strong></td>
+          <td>El comité tiene que pedir más info, lo que atrasa 1+ semana</td>
+          <td>Usa esta guía. Si tienes dudas, más detalle es mejor que menos</td>
+        </tr>
+        <tr>
+          <td><strong>Confundir objetivo con solución</strong></td>
+          <td>No se entiende el valor de negocio</td>
+          <td>El objetivo responde "qué logramos". La solución responde "cómo lo hacemos"</td>
+        </tr>
+        <tr>
+          <td><strong>Costos sin desglose</strong></td>
+          <td>No se puede evaluar si el presupuesto es razonable</td>
+          <td>Detalla cada componente de costo, por pequeño que sea</td>
+        </tr>
+        <tr>
+          <td><strong>"No hay riesgos"</strong></td>
+          <td>Genera desconfianza — todo proyecto tiene riesgos</td>
+          <td>Sé honesto. Mejor 3 riesgos con mitigación que 0 riesgos</td>
+        </tr>
+        <tr>
+          <td><strong>No verificar duplicación</strong></td>
+          <td>Pueden existir esfuerzos paralelos que no conoces</td>
+          <td>Revisa el Tracker. Si hay algo similar, referencia y diferencia</td>
+        </tr>
+        <tr>
+          <td><strong>Métricas sin baseline</strong></td>
+          <td>"Mejorar 50%" no significa nada si no sé el punto de partida</td>
+          <td>Siempre: "De X actual a Y objetivo en Z tiempo"</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p><span style="font-weight:700; letter-spacing:2px;">YÁNEKEN</span> · Guía de Project Brief — Comité AI · Yánekens S.A. · Febrero 2026</p>
+  <p style="margin-top: 4px; font-size: 0.8rem;">Dudas: <a href="mailto:sgr@ynk.cl" style="color: var(--accent);">sgr@ynk.cl</a></p>
+</div>
+
+</body>
+</html>
