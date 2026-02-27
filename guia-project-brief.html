@@ -79,7 +79,7 @@
   <div class="section">
     <p class="intro">Un buen project brief no necesita ser largo — necesita ser <strong>claro</strong>. El comité evalúa decenas de propuestas, y las que se aprueban más rápido son las que responden las preguntas correctas sin rodeos. Esta guía te muestra exactamente qué incluir y cómo escribirlo.</p>
 
-    <div class="tip"><strong>Regla de oro:</strong> Si alguien que no conoce tu proyecto lee tu brief y entiende qué quieres hacer, por qué, y cuánto cuesta — está bien escrito.</div>
+    <div class="tip"><strong>Regla de oro:</strong> Si alguien que no conoce tu proyecto lee tu brief y entiende qué quieres hacer y por qué — está bien escrito. <strong>No necesitas saber programar para postular.</strong> Describe tu idea en lenguaje de negocio y el comité + TI se encargan de lo técnico.</div>
   </div>
 
   <!-- THE 7 COMPONENTS -->
@@ -139,26 +139,27 @@
         <span class="component-tag">Obligatorio</span>
       </div>
       <div class="component-body">
-        <p><strong>Qué es:</strong> Cómo piensas resolver el problema usando IA. Aquí sí es técnico.</p>
-        <p><strong>Pregunta clave:</strong> ¿Cómo funciona tu solución y qué tecnología usa?</p>
+        <p><strong>Qué es:</strong> Cómo imaginas resolver el problema. No necesitas saber de tecnología — describe lo que quieres que pase desde el punto de vista del usuario.</p>
+        <p><strong>Pregunta clave:</strong> ¿Qué haría la herramienta y cómo la usaría la gente?</p>
         <div class="compare">
           <div class="bad">
             <span class="bad-label">Mal</span>
-            "Vamos a usar Claude para responder preguntas automáticamente."
+            "Vamos a usar IA para responder preguntas automáticamente."
           </div>
           <div class="good">
             <span class="good-label">Bien</span>
-            "Chatbot interno que usa Claude API (Sonnet) con RAG sobre nuestra base de conocimientos de soporte (~200 artículos en Zendesk). El usuario escribe su pregunta en un widget web, Claude busca artículos relevantes y genera una respuesta. Si la confianza es baja, escala a un agente humano. Backend en Python/FastAPI, desplegado en Cloud Run."
+            "Un asistente virtual en nuestro portal de soporte que responda automáticamente las preguntas más frecuentes de los clientes. El asistente buscaría en nuestros ~200 artículos de ayuda para dar respuestas precisas. Si no tiene la respuesta o el cliente no queda satisfecho, lo pasaría a un agente humano con todo el contexto de la conversación."
           </div>
         </div>
         <p style="margin-top:12px">Incluye en tu descripción:</p>
         <div style="padding-left: 16px; font-size: 0.88rem; color: var(--gray-600);">
-          <div style="margin-bottom: 4px;">• Qué modelo de IA usarás (Claude, Gemini, etc.) y por qué</div>
-          <div style="margin-bottom: 4px;">• De dónde saca los datos la IA</div>
-          <div style="margin-bottom: 4px;">• Cómo interactúa el usuario con la solución</div>
-          <div style="margin-bottom: 4px;">• Qué pasa cuando la IA no sabe la respuesta (fallback)</div>
-          <div>• Stack técnico (lenguaje, framework, infraestructura)</div>
+          <div style="margin-bottom: 4px;">• Qué haría la herramienta (descríbelo como si le explicaras a un colega)</div>
+          <div style="margin-bottom: 4px;">• De dónde sacaría la información que necesita</div>
+          <div style="margin-bottom: 4px;">• Cómo la usaría el usuario (web, app, email, etc.)</div>
+          <div style="margin-bottom: 4px;">• Qué pasa cuando la IA no puede resolver algo (escalamiento)</div>
+          <div>• Si ya tienes una preferencia de herramienta (ej: "algo como Claude o ChatGPT"), menciónalo, pero no es obligatorio</div>
         </div>
+        <div class="tip"><strong>No te preocupes por lo técnico.</strong> El comité y TI evaluarán qué tecnología es la más adecuada para tu caso. Tu trabajo es explicar bien el <em>qué</em> y el <em>para qué</em>.</div>
       </div>
     </div>
 
@@ -220,23 +221,23 @@
     <!-- 6. HERRAMIENTAS Y RECURSOS -->
     <div class="component">
       <div class="component-header">
-        6. Herramientas y Recursos
+        6. Recursos Necesarios
         <span class="component-tag">Obligatorio</span>
       </div>
       <div class="component-body">
-        <p><strong>Qué es:</strong> Qué herramientas, servicios y recursos necesitas para tu proyecto. El comité se encargará de evaluar los costos asociados.</p>
-        <p><strong>Pregunta clave:</strong> ¿Qué herramientas, APIs o servicios necesitas, y cuántas horas-persona requiere?</p>
+        <p><strong>Qué es:</strong> Qué necesitas para que tu proyecto funcione — personas, accesos, herramientas, tiempo. El comité se encargará de evaluar los costos y la viabilidad técnica.</p>
+        <p><strong>Pregunta clave:</strong> ¿Qué necesitas del equipo, de TI, o de herramientas externas para hacer esto realidad?</p>
         <div class="compare">
           <div class="bad">
             <span class="bad-label">Mal</span>
-            "Vamos a usar IA."
+            "Necesitamos IA."
           </div>
           <div class="good">
             <span class="good-label">Bien</span>
-            "Herramientas: Claude API (modelo Sonnet, ~50K tokens/día), hosting en Cloud Run (1 instancia), Cloud Storage para documentos, Vertex AI Embeddings para búsqueda semántica, monitoreo con Cloud Monitoring. Horas-persona: 40h setup inicial (dev senior), 4h/mes mantención."
+            "Necesitamos: (1) Acceso a nuestros artículos de soporte en Zendesk, (2) una herramienta de IA que pueda leer y responder basándose en esos artículos (como Claude o similar), (3) que TI integre el asistente en nuestro portal web, (4) ~2 semanas de un desarrollador para el setup inicial, (5) ~4 horas al mes para actualizar las respuestas."
           </div>
         </div>
-        <div class="warn"><strong>Sé específico en las herramientas.</strong> Detalla qué servicios planeas usar y con qué volumen estimado. El comité utilizará esta información para evaluar los costos y clasificar tu proyecto.</div>
+        <div class="tip"><strong>No necesitas saber los nombres técnicos.</strong> Está perfecto decir "una herramienta de IA que haga X" o "un lugar donde alojar esto". El comité y TI traducirán eso a servicios específicos y evaluarán los costos.</div>
       </div>
     </div>
 
@@ -279,7 +280,7 @@
             <strong>Timeline con hitos:</strong> No solo "Marzo a Mayo" sino "Semana 1-2: prototipo, Semana 3-4: piloto con 3 usuarios, Semana 5-8: iteración, Semana 9: rollout". Demuestra que tienes un plan real.
           </div>
           <div style="font-size: 0.9rem;">
-            <strong>Alternativas consideradas:</strong> "Evaluamos también usar Gemini Flash (más barato pero menos preciso en español) y una solución de Zendesk AI (más cara, $2M CLP/mes, menos personalizable)." Muestra que no es capricho.
+            <strong>Alternativas consideradas:</strong> "También consideramos usar el sistema de IA que ofrece Zendesk directamente, pero es más caro y menos personalizable para nuestro caso." Muestra que pensaste en opciones.
           </div>
           <div style="font-size: 0.9rem;">
             <strong>Plan B / criterios de abandono:</strong> "Si a los 30 días el CSAT está bajo 3.5/5.0, pausamos y reevaluamos antes de invertir más." Le da confianza al comité de que no se van a quemar recursos indefinidamente.
@@ -315,12 +316,12 @@
 
       <div class="example-field">
         <div class="example-field-label">Solución</div>
-        <div class="example-field-value">Chatbot web integrado en el portal de soporte. Usa Claude API (Sonnet) con RAG sobre los 200 artículos de Zendesk. El usuario describe su problema, Claude busca artículos relevantes y genera una respuesta personalizada. Si la confianza es baja o el usuario no queda satisfecho, escala a un agente humano con el contexto de la conversación. Stack: Python 3.11, FastAPI, Cloud Run, Vertex AI Embeddings para el índice de búsqueda.</div>
+        <div class="example-field-value">Un asistente virtual integrado en nuestro portal de soporte. El cliente escribe su pregunta, el asistente busca en nuestros ~200 artículos de ayuda de Zendesk y genera una respuesta personalizada. Si no encuentra una respuesta confiable o el cliente no queda satisfecho, lo escala automáticamente a un agente humano con todo el contexto de la conversación, para que no tenga que repetir su problema.</div>
       </div>
 
       <div class="example-field">
         <div class="example-field-label">Datos</div>
-        <div class="example-field-value">Fuentes: artículos de Zendesk (internos, no sensibles) + historial de tickets (contiene nombres y emails de clientes = PII). Clasificación: Restringido por PII. Los datos se envían a Claude API pero no se almacenan respuestas. Acceso limitado a equipo de soporte via SSO corporativo.</div>
+        <div class="example-field-value">El asistente necesita acceso a: (1) nuestros artículos de ayuda en Zendesk (información interna, no sensible), (2) historial de tickets (contiene nombres y emails de clientes, que son datos personales). Solo el equipo de soporte (8 personas) tendría acceso al asistente.</div>
       </div>
 
       <div class="example-field">
@@ -329,8 +330,8 @@
       </div>
 
       <div class="example-field">
-        <div class="example-field-label">Herramientas y Recursos</div>
-        <div class="example-field-value">Claude API Sonnet (~50K tokens/día). Cloud Run (1 instancia). Cloud Storage para base de conocimiento. Vertex AI Embeddings para búsqueda semántica. Cloud Monitoring para alertas. Setup: 40 horas dev senior (2 semanas). Mantención: 4 horas/mes.</div>
+        <div class="example-field-label">Recursos Necesarios</div>
+        <div class="example-field-value">Necesitamos: (1) acceso a Zendesk para leer los artículos de soporte, (2) una herramienta de IA para procesar las consultas (como Claude o similar), (3) integración del asistente en nuestro portal web (con ayuda de TI), (4) ~2 semanas de un desarrollador para el setup inicial, (5) ~4 horas al mes para mantención y actualización de respuestas.</div>
       </div>
 
       <div class="example-field">
@@ -349,11 +350,11 @@
       <h3>Antes de hacer clic en "Enviar"</h3>
       <div class="check-item"><input type="checkbox"> <span>El problema está descrito con datos concretos (no solo "mejorar X")</span></div>
       <div class="check-item"><input type="checkbox"> <span>El objetivo es medible y tiene un número asociado</span></div>
-      <div class="check-item"><input type="checkbox"> <span>La solución técnica está descrita con suficiente detalle para que alguien la entienda sin preguntarte</span></div>
+      <div class="check-item"><input type="checkbox"> <span>La solución está descrita de manera que cualquier colega entienda qué quieres lograr</span></div>
       <div class="check-item"><input type="checkbox"> <span>Clasifiqué los datos correctamente (público / interno / confidencial / restringido)</span></div>
       <div class="check-item"><input type="checkbox"> <span>Si uso PII, explico qué controles tendré</span></div>
       <div class="check-item"><input type="checkbox"> <span>Mis métricas tienen baseline actual + target + plazo</span></div>
-      <div class="check-item"><input type="checkbox"> <span>Listé todas las herramientas y servicios que necesito, con volúmenes estimados</span></div>
+      <div class="check-item"><input type="checkbox"> <span>Describí qué recursos necesito (accesos, personas, herramientas, tiempo)</span></div>
       <div class="check-item"><input type="checkbox"> <span>Listé al menos 2-3 riesgos reales con mitigaciones concretas</span></div>
       <div class="check-item"><input type="checkbox"> <span>Revisé el Project Tracker y no hay duplicación</span></div>
       <div class="check-item"><input type="checkbox"> <span>Alguien que no conoce mi proyecto podría entender este brief</span></div>
@@ -377,9 +378,9 @@
           <td>El objetivo responde "qué logramos". La solución responde "cómo lo hacemos"</td>
         </tr>
         <tr>
-          <td><strong>Herramientas sin detalle</strong></td>
-          <td>El comité no puede evaluar costos ni viabilidad sin saber qué usarás</td>
-          <td>Lista cada herramienta, API o servicio con el volumen estimado de uso</td>
+          <td><strong>Recursos sin detalle</strong></td>
+          <td>El comité no puede evaluar viabilidad sin saber qué necesitas</td>
+          <td>Describe qué accesos, personas, herramientas y tiempo necesitas</td>
         </tr>
         <tr>
           <td><strong>"No hay riesgos"</strong></td>
@@ -400,30 +401,26 @@
     </table>
   </div>
 
-  <!-- MVP DOCUMENTATION REQUIREMENTS -->
+  <!-- SI TU PROYECTO REQUIERE CONSTRUIR ALGO -->
   <div class="section">
-    <h2 class="section-title">Requisitos de Documentación MVP</h2>
-    <p class="intro">Si tu proyecto implica construir un MVP, tu postulación debe incluir (o comprometerse a entregar) la siguiente documentación técnica para facilitar la migración a producción por el equipo TI.</p>
+    <h2 class="section-title">Si tu Proyecto Requiere Construir Algo (MVP)</h2>
+    <p class="intro">Si tu idea requiere desarrollar una herramienta nueva (no solo usar una existente), el equipo de TI te acompañará en el proceso. No necesitas saber programar — pero sí necesitas poder explicar claramente qué quieres que haga la herramienta.</p>
 
-    <div class="checklist">
-      <h3>Documentación obligatoria del MVP</h3>
-      <div class="check-item"><input type="checkbox"> <span><strong>Base de datos:</strong> Tablas, campos, tipos de dato, claves primarias/foráneas, relaciones e índices</span></div>
-      <div class="check-item"><input type="checkbox"> <span><strong>Servicios externos:</strong> Nombre, tipo de integración (REST/Webhook/SDK), datos enviados y recibidos, método de autenticación, justificación</span></div>
-      <div class="check-item"><input type="checkbox"> <span><strong>Diagrama de flujo:</strong> Diagrama simple del flujo del sistema (entrada → proceso → resultado)</span></div>
-      <div class="check-item"><input type="checkbox"> <span><strong>Endpoints:</strong> Listado de endpoints si el MVP expone APIs</span></div>
-      <div class="check-item"><input type="checkbox"> <span><strong>Variables de entorno:</strong> Lista de todas las variables de entorno necesarias (sin incluir valores reales)</span></div>
+    <div style="background: white; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--gray-200); padding: 24px; margin-bottom: 20px;">
+      <h3 style="color: var(--accent); margin-bottom: 14px;">¿Cómo funciona?</h3>
+      <div style="display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; font-size: 0.9rem; margin-bottom: 16px;">
+        <div style="background: var(--accent-light); padding: 10px 16px; border-radius: 8px; font-weight: 600; text-align: center;">1. Tú describes<br>tu idea</div>
+        <div style="color: var(--accent); font-size: 1.2rem;">→</div>
+        <div style="background: var(--accent-light); padding: 10px 16px; border-radius: 8px; font-weight: 600; text-align: center;">2. El comité<br>la evalúa</div>
+        <div style="color: var(--accent); font-size: 1.2rem;">→</div>
+        <div style="background: var(--accent-light); padding: 10px 16px; border-radius: 8px; font-weight: 600; text-align: center;">3. Se construye<br>un prototipo</div>
+        <div style="color: var(--accent); font-size: 1.2rem;">→</div>
+        <div style="background: var(--accent-light); padding: 10px 16px; border-radius: 8px; font-weight: 600; text-align: center;">4. TI lo lleva<br>a producción</div>
+      </div>
+      <p style="font-size: 0.9rem; color: var(--gray-600); text-align: center;">El equipo de TI se encarga de la parte técnica: arquitectura, seguridad, y migración a los sistemas de la empresa.</p>
     </div>
 
-    <div style="background: #fff3e0; border-radius: 8px; padding: 16px; margin-top: 16px; border: 1px solid #ffe0b2;">
-      <strong style="color: #e65100;">Recordatorio técnico:</strong>
-      <ul style="margin: 8px 0 0 20px; font-size: 0.9rem; line-height: 1.6;">
-        <li>El MVP debe usar <strong>Python 3 + SQLite</strong> — no usar NoSQL</li>
-        <li>La estructura de BD debe ser compatible con migración a MySQL/MariaDB</li>
-        <li>No duplicar funcionalidades del proyecto base (autenticación, correos, reportes, etc.)</li>
-        <li>No escribir directamente en SAP S/4 HANA ni en el Data Warehouse</li>
-        <li>Ningún servicio externo pasa a producción sin evaluación del comité</li>
-      </ul>
-    </div>
+    <div class="tip"><strong>Importante:</strong> Si sabes programar, puedes construir el prototipo tú mismo siguiendo las guías técnicas del Portal. Si no sabes programar, el comité evaluará tu idea y coordinará con TI para asignar recursos de desarrollo.</div>
   </div>
 
 </div>
