@@ -799,6 +799,7 @@
 <script>
 // ============ PORTAL CONFIGURATION ============
 var CONFIG_KEY = 'portal_comite_ai_config';
+var CONFIG_VERSION = '2026-02-27-v2'; // bump this when URLs change to reset localStorage
 var DEFAULTS = {
   'cfg-form': 'https://docs.google.com/forms/d/e/1FAIpQLSejUuqwDqPfvHp-bkqZrDZUU0Y-Rpm7CPDnU6jzOmOyqT4SuA/viewform',
   'cfg-tracker': 'https://docs.google.com/spreadsheets/d/1SNpi3nVzyEuh2-js6Zhjn-Fm0vwJe18hJSKZh58vq5Q/edit',
@@ -819,11 +820,13 @@ var LINK_MAP = {
 
 function loadConfig() {
   try {
-    var saved = JSON.parse(localStorage.getItem(CONFIG_KEY) || '{}');
+    var stored = JSON.parse(localStorage.getItem(CONFIG_KEY) || '{}');
+    // If version changed, discard saved config so new DEFAULTS take effect
+    var saved = (stored._version === CONFIG_VERSION) ? stored : {};
     // Merge defaults with saved config (saved takes priority, but only if non-empty)
     var cfg = Object.assign({}, DEFAULTS);
     Object.keys(saved).forEach(function(key) {
-      if (saved[key] && saved[key].trim()) cfg[key] = saved[key];
+      if (key !== '_version' && saved[key] && saved[key].trim()) cfg[key] = saved[key];
     });
     // Fill inputs
     Object.keys(cfg).forEach(function(key) {
@@ -869,6 +872,7 @@ function saveConfig() {
     var el = document.getElementById(id);
     if (el && el.value.trim()) cfg[id] = el.value.trim();
   });
+  cfg._version = CONFIG_VERSION;
   localStorage.setItem(CONFIG_KEY, JSON.stringify(cfg));
   applyConfig(cfg);
   var msg = document.getElementById('save-msg');
