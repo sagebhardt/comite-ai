@@ -276,15 +276,21 @@
   <div class="section" id="submit">
     <div class="cta-area">
       <a id="cta-form-link" href="#" class="cta-btn" target="_blank" onclick="return handleCtaClick()">
-        Postular un Nuevo Proyecto
-        <span class="cta-sub">Toma ~10 minutos completar el formulario</span>
+        Postular un Proyecto
+        <span class="cta-sub">Formulario completo de postulación (~10 min)</span>
+      </a>
+      <a id="cta-idea-link" href="#" class="cta-btn" target="_blank" style="background: #ffffff; color: var(--accent); border: 2px solid var(--accent); margin-top: 12px;" onclick="return handleCtaClick()">
+        Compartir una Idea
+        <span class="cta-sub" style="color: var(--gray-600);">¿No estás listo para postular? Cuéntanos tu idea y te orientamos</span>
       </a>
     </div>
+
+    <p style="text-align:center; font-size:0.85rem; color:var(--gray-600); margin:16px 0 4px;">Ambas opciones están disponibles en <a href="https://labs.ynk.cl/" target="_blank" style="color:var(--accent);font-weight:600;">labs.ynk.cl</a></p>
 
     <!-- QR Code (static pre-generated image) -->
     <div id="qr-section" style="text-align: center; margin: 24px 0;">
       <p style="font-size: 0.9rem; color: var(--gray-600); margin-bottom: 12px;">O escanea el QR desde tu celular:</p>
-      <img id="qr-img" src="data:image/png;base64,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" alt="QR Code — Formulario Comité AI" style="width: 180px; height: 180px; border-radius: 8px; box-shadow: var(--shadow); image-rendering: pixelated;">
+      <img id="qr-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoCAIAAABkZftOAAAFf0lEQVR4nO3dMW5kNxRFQcvwkrz/FXhP7WBiBhzwzSGlqlhotTU+YHDB/78+n89fwJ/1d/0F4CcSHgSEBwHhQUB4EBAeBIQHAeFBQHgQEB4EhAcB4UFAeBAQHgSEBwHhQUB4EBAeBIQHAeFBQHgQEB4EhAcB4UFAeBAQHgSEBwHhQUB4EBAeBIQHgX+mf8G/X9O/4Yz/Fq8JXH3/1c+v7H7O7t/t1Pevfv42u/++u5x4EBAeBIQHAeFBQHgQEB4EhAeB8R1vZXonWTm1I03vUbs72PSedmrPXHn9/4ddTjwICA8CwoOA8CAgPAgIDwLCg0C2462c2lWqXejU/nbq9+7+/G373uv/P6w48SAgPAgIDwLCg4DwICA8CAgPAtfteLeZ3uVue17l9PNF+cWJBwHhQUB4EBAeBIQHAeFBQHgQsOP9Id/1fpp97/c48SAgPAgIDwLCg4DwICA8CAgPAtfteLftP6fu172iuge48vrfc8WJBwHhQUB4EBAeBIQHAeFBQHgQyHa86f1n2vTzMG973ua0V77nKU48CAgPAsKDgPAgIDwICA8CwoPA1+fzTS88HVK9747vzYkHAeFBQHgQEB4EhAcB4UFAeBC47rma0+9/q/a0U/flqs955bmat70/cMWJBwHhQUB4EBAeBIQHAeFBQHgQGL+PN70LVffZbvuer3+fXdVzSk9x4kFAeBAQHgSEBwHhQUB4EBAeBLIdb+XU/Svvo/vltnuAu27b305x4kFAeBAQHgSEBwHhQUB4EBAeBJ5/ruZtO091z6263/jKTnjb7ufEg4DwICA8CAgPAsKDgPAgIDwIPHMf77Z7biu33QO87bmj09/f+/GAJeFBQHgQEB4EhAcB4UFAeBAY3/FWpnenV3azar+q9rGV6j6h9+PBDyI8CAgPAsKDgPAgIDwICA8C2Y63q3re5k+7J1btqyuvvO9ulxMPAsKDgPAgIDwICA8CwoOA8CAw/n686r7Tbff9Vk7dQ3tln6w+/7b90IkHAeFBQHgQEB4EhAcB4UFAeBAY3/Fuu7c2vb+d+vlp08+frP4dq++5y4kHAeFBQHgQEB4EhAcB4UFAeBDI7uOt3HY/bfrzb9v3Vqb/btOq37vixIOA8CAgPAgIDwLCg4DwICA8CIzveCvVfvXKe+pOqd4ruPt9bnve6TQnHgSEBwHhQUB4EBAeBIQHAeFBINvxVqbv0U3vRbf93unPr/a91+9DOvEgIDwICA8CwoOA8CAgPAgIDwJfn8/skDG986xM73637UIrr7wvbtfr/y5OPAgIDwLCg4DwICA8CAgPAsKDwPiO97rXd7DX98zb9ttTnHgQEB4EhAcB4UFAeBAQHgSEB4Hx52retmutrHab23awU8+93DX9Obu72amdzXM14QcRHgSEBwHhQUB4EBAeBIQHgez9eNV+Uu2K0/vV63vprt2/523P4XTiQUB4EBAeBIQHAeFBQHgQEB4Esh1v5dQeVT3XceXU+wCr3W/3c27bS1fcx4MfRHgQEB4EhAcB4UFAeBAQHgSu2/FeMX0vrtqXqv+uU7tldb9ulxMPAsKDgPAgIDwICA8CwoOA8CBgx/tN1V40/X686Xt0t73fz308+EGEBwHhQUB4EBAeBIQHAeFB4Lod77Z7U6fup912T696/uTunjZ9T6/ixIOA8CAgPAgIDwLCg4DwICA8CGQ73m27yrTp51WectuOuuu2e3crTjwICA8CwoOA8CAgPAgIDwLCg8DX53PZwAE/gBMPAsKDgPAgIDwICA8CwoOA8CAgPAgIDwLCg4DwICA8CAgPAsKDgPAgIDwICA8CwoOA8CAgPAgIDwLCg4DwICA8CAgPAsKDgPAgIDwICA8CwoOA8CDwP1f9g2sNgdfpAAAAAElFTkSuQmCC" alt="QR Code — labs.ynk.cl" style="width: 180px; height: 180px; border-radius: 8px; box-shadow: var(--shadow); image-rendering: pixelated;">
     </div>
 
     <div class="alert alert-info">
@@ -315,9 +321,13 @@
       <div class="step">
         <div class="step-number">2</div>
         <div class="step-content">
-          <h3>Completa el formulario de ingreso</h3>
-          <p>Haz clic en el botón verde de arriba y completa todas las secciones. Necesitarás: descripción del proyecto, objetivo de negocio, datos involucrados, y herramientas o servicios que planeas usar. <strong>Revisa la <a href="#" class="brief-link" style="color: var(--accent);">Guía de Project Brief</a></strong> para ver ejemplos de buenas vs. malas postulaciones.</p>
-          <span class="step-time">~10 min</span>
+          <h3>Elige tu camino en <a href="https://labs.ynk.cl/" target="_blank" style="color: var(--accent);">labs.ynk.cl</a></h3>
+          <p>Tienes dos opciones:</p>
+          <ul style="margin: 8px 0; padding-left: 20px; list-style: none;">
+            <li style="margin-bottom: 8px;">🟢 <strong>Postular un proyecto</strong> — Si ya tienes claro qué quieres hacer. Completa el formulario con la descripción, objetivo, datos y recursos. <strong>Revisa la <a href="#" class="brief-link" style="color: var(--accent);">Guía de Project Brief</a></strong> para ver ejemplos.</li>
+            <li>💬 <strong>Compartir una idea</strong> — Si todavía no tienes todo claro. Cuéntanos tu idea y el comité te orientará antes de una postulación formal.</li>
+          </ul>
+          <span class="step-time">5–10 min</span>
         </div>
       </div>
 
@@ -756,7 +766,7 @@
     <div style="display: grid; gap: 14px;">
       <div>
         <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 4px;">Google Form (link público)</label>
-        <input type="text" id="cfg-form" placeholder="https://docs.google.com/forms/d/e/..." style="width: 100%; padding: 10px 14px; border: 1px solid var(--gray-400); border-radius: 8px; font-size: 0.9rem;">
+        <input type="text" id="cfg-form" placeholder="https://labs.ynk.cl/" style="width: 100%; padding: 10px 14px; border: 1px solid var(--gray-400); border-radius: 8px; font-size: 0.9rem;">
       </div>
       <div>
         <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 4px;">AI Project Tracker</label>
@@ -799,9 +809,9 @@
 <script>
 // ============ PORTAL CONFIGURATION ============
 var CONFIG_KEY = 'portal_comite_ai_config';
-var CONFIG_VERSION = '2026-02-27-v2'; // bump this when URLs change to reset localStorage
+var CONFIG_VERSION = '2026-03-05-v3'; // bump this when URLs change to reset localStorage
 var DEFAULTS = {
-  'cfg-form': 'https://docs.google.com/forms/d/e/1FAIpQLSejUuqwDqPfvHp-bkqZrDZUU0Y-Rpm7CPDnU6jzOmOyqT4SuA/viewform',
+  'cfg-form': 'https://labs.ynk.cl/',
   'cfg-tracker': 'https://docs.google.com/spreadsheets/d/1SNpi3nVzyEuh2-js6Zhjn-Fm0vwJe18hJSKZh58vq5Q/edit',
   'cfg-checklist': 'https://docs.google.com/spreadsheets/d/1Kg7YiVYm6uxpQIV1l7N7GjlbQmUwohnd/edit?usp=sharing&ouid=117075654036126053049&rtpof=true&sd=true',
   'cfg-manual': 'https://docs.google.com/document/d/1RSuv7_DBdIxhYt2Z6SGDXc5-jA8o4kcY/edit?usp=sharing&ouid=117075654036126053049&rtpof=true&sd=true',
@@ -838,10 +848,10 @@ function loadConfig() {
 }
 
 function applyConfig(cfg) {
-  // Apply Google Form link to CTA and card
+  // Apply labs.ynk.cl link to CTAs and card
   var formUrl = cfg['cfg-form'] || '';
   if (formUrl) {
-    document.querySelectorAll('#cta-form-link, .form-link').forEach(function(el) {
+    document.querySelectorAll('#cta-form-link, #cta-idea-link, .form-link').forEach(function(el) {
       el.href = formUrl;
     });
     // QR is a static pre-generated image — just ensure section is visible
